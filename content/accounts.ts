@@ -3,7 +3,7 @@ import type { AccountsContent } from "@/lib/types";
 export const accounts: AccountsContent = {
   enabled: true,
   title: "마음 전하시는 곳",
-  description: "축하의 마음을 전해 주실 분들을 위해 연락처와 계좌 정보를 함께 안내드립니다.",
+  description: "축하의 마음을 전해 주실 분들을 위해 연락처와 계좌 정보를 정리해 두었습니다.",
   groups: [
     {
       id: "groom",
@@ -15,14 +15,14 @@ export const accounts: AccountsContent = {
           label: "아버지",
           bankName: "국민은행",
           accountNumber: "123-456789-01-001",
-          accountHolder: "신동수",
+          accountHolder: "신창봉",
           phone: "010-1234-1001",
         },
         {
           label: "어머니",
           bankName: "국민은행",
           accountNumber: "123-456789-01-002",
-          accountHolder: "박은영",
+          accountHolder: "이예범",
           phone: "010-1234-1002",
         },
         {
@@ -44,14 +44,14 @@ export const accounts: AccountsContent = {
           label: "아버지",
           bankName: "농협은행",
           accountNumber: "352-2087-1234-01",
-          accountHolder: "김정호",
+          accountHolder: "김은철",
           phone: "010-5678-2001",
         },
         {
           label: "어머니",
           bankName: "하나은행",
           accountNumber: "351-910234-56702",
-          accountHolder: "이수연",
+          accountHolder: "오영희",
           phone: "010-5678-2002",
         },
         {

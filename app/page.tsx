@@ -26,7 +26,7 @@ export default function Home() {
 
   return (
     <main
-      className="mx-auto flex min-h-screen w-full max-w-6xl flex-col px-4 pb-16 pt-4 text-text sm:px-6 lg:px-8"
+      className="mx-auto flex min-h-screen w-full max-w-7xl flex-col px-3 pb-16 pt-4 text-text sm:px-5 lg:px-6"
       style={{ ["--color-accent" as string]: site.accentColor }}
     >
       <motion.nav
@@ -64,42 +64,31 @@ export default function Home() {
           <div className="absolute right-0 top-1/3 h-40 w-40 rounded-full bg-[#efe0d2]/45 blur-3xl" />
         </div>
 
-        <div className="relative grid gap-4 lg:grid-cols-[1.15fr_0.85fr] lg:items-stretch">
+        <div className="relative grid gap-4 lg:grid-cols-[1.08fr_0.92fr] lg:items-stretch">
           <motion.div
             initial={{ opacity: 0, y: 18 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
-            className="relative min-h-[72svh] overflow-hidden rounded-[30px] border border-white/50"
+            className="relative aspect-[4/5] overflow-hidden rounded-[30px] border border-white/50 sm:aspect-[5/6] lg:aspect-auto lg:min-h-[72svh] [@media_(orientation:landscape)_and_(max-height:560px)]:aspect-[16/10] [@media_(orientation:landscape)_and_(max-height:560px)]:min-h-0"
           >
             <div className="absolute inset-0">
               <PhotoFrame
                 src={heroPhoto?.src}
                 alt={heroPhoto?.alt ?? "Wedding hero image"}
                 priority
-                className="min-h-[72svh] rounded-[30px]"
+                className="h-full min-h-0 rounded-[30px] lg:min-h-[72svh] [@media_(orientation:landscape)_and_(max-height:560px)]:min-h-0"
                 sizes="100vw"
               />
             </div>
             <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(19,14,10,0.08),rgba(23,18,14,0.18)_28%,rgba(40,28,20,0.58)_100%)]" />
 
-            <div className="absolute inset-x-0 top-0 flex justify-start p-5 text-[#fdf5ef] sm:p-7">
-              <div className="rounded-full border border-white/25 bg-black/10 px-4 py-2 backdrop-blur-sm">
-                <p className="luxury-kicker text-[#f5e4d8]">모바일 청첩장</p>
-              </div>
-            </div>
-
-            <div className="absolute inset-x-0 bottom-0 p-5 text-[#fdf8f3] sm:p-7">
-              <p className="luxury-kicker mb-3 text-[#f0d9ca]">양가 가족과 함께</p>
-              <h1 className="balanced-title mt-4 font-serif text-[2.5rem] leading-[0.94] tracking-[-0.05em] text-white sm:text-[3.4rem] lg:text-[4.5rem]">
+            <div className="absolute inset-x-0 bottom-0 p-4 text-[#fdf8f3] sm:p-8">
+              <p className="luxury-kicker mb-3 text-[#f0d9ca]">Wedding Invitation</p>
+              <h1 className="balanced-title max-w-[10ch] font-serif leading-[0.94] tracking-[-0.045em] text-white text-[clamp(1.85rem,8.2vmin,4.35rem)] sm:max-w-[12ch] sm:leading-[0.9] sm:tracking-[-0.05em] lg:text-[clamp(3.2rem,5.4vw,4.7rem)]">
                 <span className="block">{site.couple.groom}</span>
                 <span className="my-1 block text-[0.5em] leading-none text-[#f2ddd0]">&amp;</span>
                 <span className="block">{site.couple.bride}</span>
               </h1>
-              <div className="mt-4 max-w-[22rem] border-l border-white/25 pl-4 sm:mt-5 sm:max-w-md">
-                <p className="balanced-copy text-[14px] leading-6 text-[#f8eee6] sm:text-base sm:leading-8">
-                  {site.invitationLine}
-                </p>
-              </div>
             </div>
           </motion.div>
 
@@ -107,28 +96,30 @@ export default function Home() {
             initial={{ opacity: 0, y: 18 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.08, ease: [0.22, 1, 0.36, 1] }}
-            className="relative overflow-hidden rounded-[30px] border border-[rgba(88,74,64,0.08)] bg-[linear-gradient(180deg,rgba(255,252,248,0.95),rgba(247,239,232,0.9))] p-6 sm:p-8"
+            className="relative flex flex-col gap-4 px-1 sm:px-0"
           >
-            <div className="absolute inset-x-8 top-0 h-px bg-[linear-gradient(90deg,transparent,rgba(184,143,115,0.45),transparent)]" />
-            <div>
+            <div className="rounded-[24px] border border-[rgba(184,143,115,0.14)] bg-[linear-gradient(180deg,rgba(255,255,255,0.74),rgba(252,247,242,0.7))] px-6 py-6 sm:px-8 lg:px-10">
               <p className="luxury-kicker text-accent">Wedding Lunch</p>
-              <p className="balanced-copy mt-5 text-[13.5px] leading-6 text-muted sm:text-[15px] sm:leading-8">
-                {site.invitationLine}
+              <p className="mx-auto mt-5 w-full max-w-[22rem] text-center text-[clamp(0.96rem,2vw,1.12rem)] leading-[1.9] tracking-[-0.03em] text-muted sm:max-w-[24rem] sm:leading-8">
+                <span className="block whitespace-nowrap">저희 두 사람의 소중한 시작에 귀한 걸음으로</span>
+                <span className="block whitespace-nowrap">함께해 주시면 감사하겠습니다.</span>
               </p>
             </div>
 
-            <div className="my-9 space-y-6">
-              <div className="editorial-divider pt-6">
+            <div className="grid gap-4">
+              <div className="rounded-[22px] border border-[rgba(88,74,64,0.08)] bg-white/72 px-7 py-5 shadow-[inset_0_1px_0_rgba(255,255,255,0.45)] sm:px-9 lg:px-10">
                 <p className="luxury-kicker text-muted">Date &amp; Time</p>
-                <p className="mt-3 font-serif text-[1.45rem] leading-[1.1] tracking-[-0.035em] text-text sm:text-[1.82rem]">
-                  <span className="block">{formatFullDate(site.weddingDateTime)}</span>
-                  <span className="mt-1 block text-[0.8em] tracking-[-0.02em]">at {formatTime(site.weddingDateTime)}</span>
+                <p className="mt-3 text-[clamp(0.76rem,1.8vw,0.84rem)] leading-8 tracking-[-0.015em] text-text sm:leading-8">
+                  {formatFullDate(site.weddingDateTime)} {formatTime(site.weddingDateTime)}
                 </p>
               </div>
-              <div className="editorial-divider pt-6">
+
+              <div className="rounded-[22px] border border-[rgba(88,74,64,0.08)] bg-white/72 px-7 py-5 shadow-[inset_0_1px_0_rgba(255,255,255,0.45)] sm:px-9 lg:px-10">
                 <p className="luxury-kicker text-muted">Venue</p>
-                <p className="mt-3 text-lg font-semibold tracking-[-0.02em] text-text">{site.venue.name}</p>
-                <div className="mt-3 flex items-start gap-2 text-sm leading-7 text-muted">
+                <p className="mt-3 text-[clamp(0.76rem,1.8vw,0.84rem)] leading-8 tracking-[-0.015em] text-text sm:leading-8">
+                  {site.venue.name}
+                </p>
+                <div className="mt-1 flex items-start gap-2 text-[clamp(1rem,2.4vw,1.08rem)] leading-8 tracking-[-0.015em] text-muted sm:leading-8">
                   <MapPin className="mt-1 h-4 w-4 shrink-0 text-accent" />
                   <p className="balanced-copy">{site.venue.address}</p>
                 </div>
@@ -143,78 +134,87 @@ export default function Home() {
           id="invitation"
           className="bg-[linear-gradient(180deg,rgba(255,250,246,0.96),rgba(251,245,239,0.92))]"
         >
-          <SectionHeading eyebrow="Invitation" title={story.invitationTitle} description="소중한 분들을 정중히 초대합니다." align="center" />
-          <div className="mx-auto mt-10 max-w-3xl text-center">
-            <p className="font-serif text-[1.65rem] leading-[1.06] tracking-[-0.04em] text-text sm:text-[2.35rem] lg:text-[2.75rem] lg:whitespace-nowrap">
-              {site.couple.groom} &amp; {site.couple.bride}
-            </p>
-            <div className="mx-auto mt-6 h-px w-24 bg-[linear-gradient(90deg,transparent,rgba(184,143,115,0.55),transparent)]" />
-            <div className="balanced-copy mt-8 space-y-5 text-[14px] leading-7 text-muted sm:text-[15px] sm:leading-8">
-              {story.invitationBody.map((paragraph, index) => (
-                <p key={`${paragraph}-${index}`}>{paragraph}</p>
-              ))}
+          <SectionHeading eyebrow="Invitation" title={story.invitationTitle} align="center" />
+          <div className="relative mx-auto mt-10 max-w-4xl px-3 text-center sm:px-6 lg:px-8">
+            <div className="pointer-events-none absolute left-1/2 top-8 h-28 w-28 -translate-x-1/2 rounded-full bg-[rgba(245,228,214,0.26)] blur-3xl" />
+
+            <div className="relative">
+              <p className="font-serif text-[1.68rem] leading-[1.06] tracking-[-0.04em] text-text sm:text-[2.35rem] lg:text-[2.8rem]">
+                {site.couple.groom} &amp; {site.couple.bride}
+              </p>
+              <div className="mx-auto mt-5 h-px w-24 bg-[linear-gradient(90deg,transparent,rgba(184,143,115,0.55),transparent)]" />
+
+              <p className="balanced-copy mx-auto mt-9 max-w-2xl text-[1rem] leading-[1.95] tracking-[-0.02em] text-text sm:text-[1.14rem] sm:leading-[2.05]">
+                {story.invitationBody[0]}
+              </p>
+
+              <div className="mx-auto mt-7 h-10 w-px bg-[linear-gradient(180deg,rgba(184,143,115,0.06),rgba(184,143,115,0.44),rgba(184,143,115,0.06))]" />
+
+              <div className="balanced-copy mx-auto mt-7 max-w-[56rem] space-y-6 text-[14px] leading-7 text-muted sm:text-[15px] sm:leading-8">
+                {story.invitationBody.slice(1).map((paragraph, index) => (
+                  <p key={`${paragraph}-${index}`}>{paragraph}</p>
+                ))}
+              </div>
             </div>
           </div>
         </SectionShell>
 
-        <SectionShell id="details">
+<SectionShell id="details">
           <SectionHeading
             eyebrow="Wedding Details"
-            title="따뜻한 식사와 기쁜 마음을 나누는 자리에 초대합니다."
-            description={site.venue.parkingNote}
+            title="편안한 식사와 함께 마음을 나누는 자리에 모십니다."
             align="center"
           />
-          <div className="mt-8 grid gap-4 md:grid-cols-2">
-            <div className="section-panel rounded-[26px] p-5 sm:p-6">
-              <div className="flex items-center gap-3 text-text">
+          <div className="mt-8 grid gap-4">
+            <div className="section-panel rounded-[26px] px-6 py-5 text-center sm:px-8 sm:py-6 lg:px-9 lg:py-7">
+              <div className="flex items-center justify-center gap-3 text-text">
                 <CalendarDays className="h-5 w-5 text-accent" />
                 <p className="luxury-kicker text-muted">When</p>
               </div>
               <div className="mt-5">
-                <p className="font-serif text-[1.85rem] leading-[1.06] tracking-[-0.04em] text-text sm:text-[2rem]">
+                <p className="font-serif text-[clamp(1.12rem,3vw,1.4rem)] leading-[1.12] tracking-[-0.04em] text-text">
                   {formatFullDate(site.weddingDateTime)}
                 </p>
-                <p className="mt-2 text-sm font-medium uppercase tracking-[0.22em] text-accent">
+                <p className="mt-2 font-serif text-[clamp(1.12rem,3vw,1.4rem)] leading-[1.12] tracking-[-0.04em] text-text">
                   {formatTime(site.weddingDateTime)}
                 </p>
               </div>
-              <p className="mt-3 text-sm leading-7 text-muted">Eastern Time (ET)</p>
             </div>
 
-            <div className="section-panel rounded-[26px] p-5 sm:p-6">
+            <div className="px-2 sm:px-3">
+              <Link
+                href="/api/calendar"
+                className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-text px-5 py-4 text-sm font-semibold text-white transition duration-500 hover:bg-[#4c3f35]"
+              >
+                <span className="text-white">캘린더 추가</span>
+                <CalendarDays className="h-4 w-4 text-white" />
+              </Link>
+            </div>
+
+            <div className="section-panel rounded-[26px] px-6 py-5 sm:px-8 sm:py-6 lg:px-9 lg:py-7">
               <div className="flex items-center gap-3 text-text">
                 <MapPinned className="h-5 w-5 text-accent" />
                 <p className="luxury-kicker text-muted">Where</p>
               </div>
               <div className="mt-5">
-                <p className="font-serif text-[1.65rem] leading-[1.08] tracking-[-0.03em] text-text sm:text-[1.9rem]">
+                <p className="font-serif text-[clamp(1.12rem,3vw,1.4rem)] leading-[1.12] tracking-[-0.04em] text-text">
                   {site.venue.name}
                 </p>
-                <p className="balanced-copy mt-3 text-sm leading-7 text-muted">{site.venue.address}</p>
+                <p className="balanced-copy mt-3 text-[clamp(0.98rem,2vw,1.08rem)] leading-8 text-text">
+                  {site.venue.address}
+                </p>
               </div>
             </div>
-          </div>
 
-          <div className="mt-4 grid gap-4 sm:grid-cols-2 sm:items-start">
-            <div className="sm:max-w-[320px]">
-              <Link
-                href="/api/calendar"
-                className="inline-flex w-full items-center justify-center gap-2 rounded-full border border-[rgba(88,74,64,0.08)] bg-white/80 px-5 py-4 text-sm font-semibold text-text transition duration-500 hover:border-accent/50 hover:text-accent"
-              >
-                캘린더 추가
-                <CalendarDays className="h-4 w-4" />
-              </Link>
-            </div>
-
-            <div className="sm:max-w-[320px]">
+            <div className="px-2 sm:px-3">
               <a
                 href={mapUrl}
                 target="_blank"
                 rel="noreferrer"
-                className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-text px-5 py-4 text-sm font-semibold text-[#fff8f2] transition duration-500 hover:bg-[#4c3f35]"
+                className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-text px-5 py-4 text-sm font-semibold text-white transition duration-500 hover:bg-[#4c3f35]"
               >
-                지도 열기
-                <ExternalLink className="h-4 w-4" />
+                <span className="text-white">오시는 길 보기</span>
+                <ExternalLink className="h-4 w-4 shrink-0 text-white" />
               </a>
             </div>
           </div>
@@ -236,7 +236,6 @@ export default function Home() {
           <SectionHeading
             eyebrow="Gallery"
             title="함께한 계절의 몇 장면"
-            description="사진은 /public/photos 폴더와 content/photos.ts만 수정하면 교체할 수 있습니다."
             align="center"
           />
           <Gallery photos={photos} />
@@ -247,7 +246,7 @@ export default function Home() {
             <SectionHeading
               eyebrow="Blessing"
               title={accounts.title}
-              description="신랑측, 신부측 순서로 연락처와 계좌 정보를 함께 안내드립니다."
+              description="신랑측과 신부측 연락처 및 계좌 정보를 한곳에 정리했습니다."
               align="center"
             />
             <AccountsSection content={accounts} />
@@ -259,7 +258,6 @@ export default function Home() {
             <SectionHeading
               eyebrow="Share"
               title="한 번의 탭으로 이 초대장을 전해보세요."
-              description="링크 복사는 항상 동작하고, 지원되는 모바일 브라우저에서는 공유 메뉴가 바로 열립니다."
               align="center"
             />
             <ShareActions title={meta.title} text={meta.description} siteUrl={meta.siteUrl} />

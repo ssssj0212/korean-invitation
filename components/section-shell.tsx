@@ -10,7 +10,7 @@ export function SectionShell({ id, className, ...props }: SectionShellProps) {
   return (
     <section
       id={id}
-      className={cn("section-card soft-grain px-5 py-9 sm:px-8 sm:py-11", className)}
+      className={cn("section-card soft-grain px-4 py-9 sm:px-6 sm:py-11 lg:px-7", className)}
       {...props}
     />
   );

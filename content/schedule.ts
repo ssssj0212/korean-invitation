@@ -14,7 +14,7 @@ export const schedule: ScheduleItem[] = [
   {
     time: "13:40",
     title: "축하 인사 및 사진 촬영",
-    description: "가족 및 지인 순서로 기념 촬영이 진행됩니다.",
+    description: "순서에 따라 기념 촬영이 진행됩니다.",
   },
   {
     time: "14:10",

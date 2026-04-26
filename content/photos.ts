@@ -26,4 +26,24 @@ export const photos: PhotoItem[] = [
     src: "/photos/gallery-5.jpg",
     alt: "갤러리 사진 5",
   },
+  {
+    src: "/photos/gallery-6.jpg",
+    alt: "갤러리 사진 6",
+  },
+  {
+    src: "/photos/gallery-7.jpg",
+    alt: "갤러리 사진 7",
+  },
+  {
+    src: "/photos/gallery-8.jpg",
+    alt: "갤러리 사진 8",
+  },
+  {
+    src: "/photos/gallery-9.jpg",
+    alt: "갤러리 사진 9",
+  },
+  {
+    src: "/photos/gallery-10.jpg",
+    alt: "갤러리 사진 10",
+  },
 ];

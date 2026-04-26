@@ -31,12 +31,14 @@ export function formatFullDate(value: string) {
     return "날짜를 확인해주세요";
   }
 
-  return new Intl.DateTimeFormat("ko-KR", {
+  const formatted = new Intl.DateTimeFormat("ko-KR", {
     year: "numeric",
     month: "long",
     day: "numeric",
     weekday: "long",
   }).format(date);
+
+  return formatted.replace(/(토요일|일요일|월요일|화요일|수요일|목요일|금요일)$/, "$1,");
 }
 
 export function formatTime(value: string) {

@@ -42,6 +42,20 @@ body {
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   letter-spacing: -0.01em;
+  word-break: keep-all;
+  overflow-wrap: break-word;
+}
+
+p,
+h1,
+h2,
+h3,
+h4,
+span,
+a,
+button {
+  word-break: keep-all;
+  overflow-wrap: break-word;
 }
 
 a {
@@ -137,22 +151,26 @@ summary::-webkit-details-marker {
 
 .balanced-title {
   text-wrap: balance;
+  word-break: keep-all;
+  overflow-wrap: break-word;
 }
 
 .balanced-copy {
   text-wrap: pretty;
+  word-break: keep-all;
+  overflow-wrap: break-word;
 }
 
 .countdown-item {
-  @apply rounded-[24px] border border-line/80 bg-white/80 px-4 py-5 text-center;
+  @apply rounded-[24px] border border-line/80 bg-white/80 px-3 py-4 text-center sm:px-4 sm:py-5;
 }
 
 .countdown-value {
-  @apply font-serif text-4xl leading-none text-text sm:text-5xl;
+  @apply font-serif text-[1.55rem] leading-none text-text sm:text-[1.9rem];
 }
 
 .countdown-label {
-  @apply mt-2 text-[11px] uppercase tracking-[0.24em] text-muted;
+  @apply text-[8px] uppercase tracking-[0.16em] text-muted sm:text-[9px] sm:tracking-[0.18em];
 }
 
 .gallery-grid {

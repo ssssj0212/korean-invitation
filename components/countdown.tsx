@@ -44,11 +44,13 @@ export function Countdown({ targetDate }: { targetDate: string }) {
   ];
 
   return (
-    <div className="grid w-full max-w-[720px] grid-cols-4 gap-3">
+    <div className="grid w-full max-w-[760px] grid-cols-4 gap-2 sm:gap-3">
       {items.map((item) => (
         <div key={item.label} className="countdown-item">
-          <span className="countdown-value">{String(item.value).padStart(2, "0")}</span>
-          <span className="countdown-label">{item.label}</span>
+          <div className="flex items-end justify-center gap-1.5 sm:gap-2">
+            <span className="countdown-value">{String(item.value).padStart(2, "0")}</span>
+            <span className="countdown-label">{item.label}</span>
+          </div>
         </div>
       ))}
     </div>
