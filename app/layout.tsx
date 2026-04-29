@@ -10,6 +10,9 @@ export const metadata: Metadata = {
   metadataBase: meta.siteUrl ? new URL(meta.siteUrl) : undefined,
   title: meta.title,
   description: meta.description,
+  alternates: {
+    canonical: meta.siteUrl,
+  },
   openGraph: {
     title: meta.title,
     description: meta.description,
@@ -17,7 +20,18 @@ export const metadata: Metadata = {
     siteName: meta.title,
     locale: "ko_KR",
     type: "website",
-    images: meta.ogImage ? [{ url: meta.ogImage }] : undefined,
+    images: meta.ogImage
+      ? [
+          {
+            url: meta.ogImage,
+            secureUrl: meta.ogImage,
+            width: 1200,
+            height: 630,
+            alt: meta.title,
+            type: "image/jpeg",
+          },
+        ]
+      : undefined,
   },
   twitter: {
     card: "summary_large_image",

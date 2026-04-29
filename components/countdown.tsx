@@ -2,6 +2,13 @@
 
 import { useEffect, useState } from "react";
 
+type TimeLeft = {
+  days: number;
+  hours: number;
+  minutes: number;
+  seconds: number;
+};
+
 function getTimeLeft(target: string) {
   const diff = new Date(target).getTime() - Date.now();
 
@@ -22,18 +29,35 @@ function getTimeLeft(target: string) {
 }
 
 export function Countdown({ targetDate }: { targetDate: string }) {
-  const [timeLeft, setTimeLeft] = useState(() => getTimeLeft(targetDate));
+  const [timeLeft, setTimeLeft] = useState<TimeLeft | null>(null);
 
   useEffect(() => {
-    const timer = window.setInterval(() => {
+    const updateCountdown = () => {
       setTimeLeft(getTimeLeft(targetDate));
-    }, 1000);
+    };
 
-    return () => window.clearInterval(timer);
+    const initialTimer = window.setTimeout(updateCountdown, 0);
+    const timer = window.setInterval(updateCountdown, 1000);
+
+    return () => {
+      window.clearTimeout(initialTimer);
+      window.clearInterval(timer);
+    };
   }, [targetDate]);
 
   if (!timeLeft) {
-    return <p className="balanced-copy text-[13px] leading-7 text-muted sm:text-[14.5px] sm:leading-8">소중한 날이 시작되었습니다.</p>;
+    return (
+      <div className="grid w-full max-w-full grid-cols-4 gap-2 sm:gap-3" aria-label="카운트다운을 준비하고 있습니다">
+        {["Days", "Hours", "Min", "Sec"].map((label) => (
+          <div key={label} className="countdown-item">
+            <div className="flex items-end justify-center gap-1.5 sm:gap-2">
+              <span className="countdown-value">--</span>
+              <span className="countdown-label">{label}</span>
+            </div>
+          </div>
+        ))}
+      </div>
+    );
   }
 
   const items = [
@@ -44,7 +68,7 @@ export function Countdown({ targetDate }: { targetDate: string }) {
   ];
 
   return (
-    <div className="grid w-full max-w-[760px] grid-cols-4 gap-2 sm:gap-3">
+    <div className="grid w-full max-w-full grid-cols-4 gap-2 sm:gap-3">
       {items.map((item) => (
         <div key={item.label} className="countdown-item">
           <div className="flex items-end justify-center gap-1.5 sm:gap-2">

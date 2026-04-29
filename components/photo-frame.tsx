@@ -1,5 +1,8 @@
+ "use client";
+
 import Image from "next/image";
 import { ImageIcon } from "lucide-react";
+import { useState } from "react";
 
 import { cn } from "@/lib/utils";
 
@@ -10,6 +13,7 @@ type PhotoFrameProps = {
   className?: string;
   sizes?: string;
   fill?: boolean;
+  fit?: "contain" | "cover";
 };
 
 export function PhotoFrame({
@@ -19,8 +23,11 @@ export function PhotoFrame({
   className,
   sizes,
   fill = true,
+  fit = "contain",
 }: PhotoFrameProps) {
-  if (!src) {
+  const [hasError, setHasError] = useState(false);
+
+  if (!src || hasError) {
     return (
       <div
         className={cn(
@@ -45,9 +52,10 @@ export function PhotoFrame({
         src={src}
         alt={alt}
         fill
+        onError={() => setHasError(true)}
         priority={priority}
         sizes={sizes}
-        className={cn("object-cover transition duration-700 ease-out hover:scale-[1.02]", className)}
+        className={cn(fit === "cover" ? "object-cover" : "object-contain", "transition duration-500 ease-out", className)}
       />
     );
   }
@@ -58,9 +66,10 @@ export function PhotoFrame({
       alt={alt}
       width={1600}
       height={2000}
+      onError={() => setHasError(true)}
       priority={priority}
       sizes={sizes}
-      className={cn("h-full w-full object-contain transition duration-700 ease-out hover:scale-[1.02]", className)}
+      className={cn("h-full w-full object-contain transition duration-500 ease-out", className)}
     />
   );
 }

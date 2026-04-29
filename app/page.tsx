@@ -1,8 +1,8 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { CalendarDays, Camera, ExternalLink, Gift, MapPin, MapPinned, Share2 } from "lucide-react";
-import Link from "next/link";
+import { Camera, Gift, House, MapPinned } from "lucide-react";
+import { WindSong } from "next/font/google";
 
 import { AccountsSection } from "@/components/accounts-section";
 import { BgmPlayer } from "@/components/bgm-player";
@@ -13,7 +13,11 @@ import { SectionHeading } from "@/components/section-heading";
 import { SectionShell } from "@/components/section-shell";
 import { ShareActions } from "@/components/share-actions";
 import { getAccounts, getMeta, getPhotos, getSiteConfig, getStory } from "@/lib/content";
-import { formatFullDate, formatTime, mapSearchUrl } from "@/lib/utils";
+
+const windsong = WindSong({
+  subsets: ["latin"],
+  weight: "400",
+});
 
 export default function Home() {
   const site = getSiteConfig();
@@ -22,73 +26,85 @@ export default function Home() {
   const accounts = getAccounts();
   const meta = getMeta();
   const heroPhoto = photos[0];
-  const mapUrl = site.venue.mapUrl ?? mapSearchUrl(site.venue.address);
+  const galleryPhotos = photos.slice(1);
+  const weddingDate = new Date(site.weddingDateTime);
+  const compactDate = `${weddingDate.getFullYear()}.${String(weddingDate.getMonth() + 1).padStart(2, "0")}.${String(
+    weddingDate.getDate(),
+  ).padStart(2, "0")}`;
+  const heroLocation = "Manhattan, New York";
+  const scrollToSection = (sectionId: string) => {
+    document.getElementById(sectionId)?.scrollIntoView({ behavior: "smooth", block: "start" });
+    window.history.replaceState(null, "", window.location.origin);
+  };
 
   return (
     <main
-      className="mx-auto flex min-h-screen w-full max-w-7xl flex-col px-3 pb-16 pt-4 text-text sm:px-5 lg:px-6"
+      className="mx-auto flex min-h-screen w-full max-w-[430px] flex-col px-3 pb-16 pt-4 text-text sm:px-4"
       style={{ ["--color-accent" as string]: site.accentColor }}
     >
       <motion.nav
         initial={{ opacity: 0, y: -12 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-        className="sticky top-3 z-30 mb-5 overflow-x-auto rounded-full border border-white/60 bg-[rgba(255,251,246,0.72)] px-3 py-2 shadow-[0_12px_30px_rgba(77,57,43,0.08)] backdrop-blur-xl"
+        className="sticky top-3 z-30 mb-5 rounded-full border border-white/60 bg-[rgba(255,251,246,0.72)] px-1.5 py-2 shadow-[0_12px_30px_rgba(77,57,43,0.08)] backdrop-blur-xl"
         aria-label="Section navigation"
       >
-        <div className="flex min-w-max items-center gap-1">
+        <div className="flex w-full items-center justify-between">
           {[
-            { href: "#details", label: "안내", icon: MapPinned },
-            { href: "#gallery", label: "갤러리", icon: Camera },
-            { href: "#gift", label: "마음 전하실 곳", icon: Gift },
-            { href: "#share", label: "공유", icon: Share2 },
+            { id: "home", label: "홈", icon: House },
+            { id: "invitation", label: "안내", icon: MapPinned },
+            { id: "gallery", label: "갤러리", icon: Camera },
+            { id: "gift", label: "마음 전하실 곳", icon: Gift },
           ].map((section) => {
             const Icon = section.icon;
             return (
-              <a
-                key={section.href}
-                href={section.href}
-                className="inline-flex items-center gap-2 rounded-full px-3 py-2 text-[11px] font-medium tracking-[0.08em] text-muted transition duration-500 hover:bg-white/90 hover:text-text"
+              <button
+                key={section.id}
+                type="button"
+                onClick={() => scrollToSection(section.id)}
+                className="inline-flex min-w-0 items-center justify-center gap-1 rounded-full px-0 py-2 text-[clamp(10.5px,2.55vw,11.5px)] font-medium tracking-[0] text-muted transition duration-500 hover:bg-white/90 hover:text-text"
               >
-                <Icon className="h-3.5 w-3.5" />
-                <span>{section.label}</span>
-              </a>
+                <Icon className="h-3.5 w-3.5 shrink-0" />
+                <span className="whitespace-nowrap">{section.label}</span>
+              </button>
             );
           })}
         </div>
       </motion.nav>
 
-      <section className="section-card relative overflow-hidden px-4 pb-4 pt-4 sm:px-6 sm:pb-6 sm:pt-6">
+      <section id="home" className="section-card relative overflow-hidden px-4 pb-4 pt-4 sm:px-6 sm:pb-6 sm:pt-6">
         <div className="pointer-events-none absolute inset-0">
           <div className="absolute -left-10 top-10 h-32 w-32 rounded-full bg-[#f6e7d9]/50 blur-3xl" />
           <div className="absolute right-0 top-1/3 h-40 w-40 rounded-full bg-[#efe0d2]/45 blur-3xl" />
         </div>
 
-        <div className="relative grid gap-4 lg:grid-cols-[1.08fr_0.92fr] lg:items-stretch">
+        <div className="relative grid gap-5">
           <motion.div
             initial={{ opacity: 0, y: 18 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
-            className="relative aspect-[4/5] overflow-hidden rounded-[30px] border border-white/50 sm:aspect-[5/6] lg:aspect-auto lg:min-h-[72svh] [@media_(orientation:landscape)_and_(max-height:560px)]:aspect-[16/10] [@media_(orientation:landscape)_and_(max-height:560px)]:min-h-0"
+            className="relative aspect-[2/3] overflow-hidden rounded-[30px]"
           >
-            <div className="absolute inset-0">
-              <PhotoFrame
-                src={heroPhoto?.src}
-                alt={heroPhoto?.alt ?? "Wedding hero image"}
-                priority
-                className="h-full min-h-0 rounded-[30px] lg:min-h-[72svh] [@media_(orientation:landscape)_and_(max-height:560px)]:min-h-0"
-                sizes="100vw"
-              />
-            </div>
-            <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(19,14,10,0.08),rgba(23,18,14,0.18)_28%,rgba(40,28,20,0.58)_100%)]" />
+            <PhotoFrame
+              src={heroPhoto?.src}
+              alt={heroPhoto?.alt ?? "Wedding hero image"}
+              priority
+              fit="cover"
+              className="hero-photo-reveal h-full min-h-0 rounded-[30px] object-center"
+              sizes="100vw"
+            />
+            <div className="absolute inset-x-0 bottom-0 h-[31%] bg-[linear-gradient(180deg,rgba(19,14,10,0),rgba(36,27,20,0.04)_44%,rgba(36,27,20,0.13)_100%)]" />
 
-            <div className="absolute inset-x-0 bottom-0 p-4 text-[#fdf8f3] sm:p-8">
-              <p className="luxury-kicker mb-3 text-[#f0d9ca]">Wedding Invitation</p>
-              <h1 className="balanced-title max-w-[10ch] font-serif leading-[0.94] tracking-[-0.045em] text-white text-[clamp(1.85rem,8.2vmin,4.35rem)] sm:max-w-[12ch] sm:leading-[0.9] sm:tracking-[-0.05em] lg:text-[clamp(3.2rem,5.4vw,4.7rem)]">
-                <span className="block">{site.couple.groom}</span>
-                <span className="my-1 block text-[0.5em] leading-none text-[#f2ddd0]">&amp;</span>
-                <span className="block">{site.couple.bride}</span>
-              </h1>
+            <div className="absolute inset-x-0 top-4 flex justify-center px-8 text-center text-[#fdf8f3] sm:top-8">
+              <p className="luxury-kicker text-center text-white/96">Wedding Invitation</p>
+            </div>
+
+            <div className="pointer-events-none absolute inset-x-0 top-[24%] flex justify-center px-6 text-center text-white">
+              <p
+                className={`${windsong.className} w-full max-w-[18rem] whitespace-pre-line text-[clamp(2.82rem,12.1vw,4.12rem)] font-normal leading-[0.74] [text-shadow:0_2px_10px_rgba(0,0,0,0.08)]`}
+              >
+                {"Our\nWedding\nDay"}
+              </p>
             </div>
           </motion.div>
 
@@ -96,34 +112,25 @@ export default function Home() {
             initial={{ opacity: 0, y: 18 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.08, ease: [0.22, 1, 0.36, 1] }}
-            className="relative flex flex-col gap-4 px-1 sm:px-0"
+            className="section-panel rounded-[24px] px-6 py-5 text-center"
           >
-            <div className="rounded-[24px] border border-[rgba(184,143,115,0.14)] bg-[linear-gradient(180deg,rgba(255,255,255,0.74),rgba(252,247,242,0.7))] px-6 py-6 sm:px-8 lg:px-10">
-              <p className="luxury-kicker text-accent">Wedding Lunch</p>
-              <p className="mx-auto mt-5 w-full max-w-[22rem] text-center text-[clamp(0.96rem,2vw,1.12rem)] leading-[1.9] tracking-[-0.03em] text-muted sm:max-w-[24rem] sm:leading-8">
-                <span className="block whitespace-nowrap">저희 두 사람의 소중한 시작에 귀한 걸음으로</span>
-                <span className="block whitespace-nowrap">함께해 주시면 감사하겠습니다.</span>
-              </p>
+            <div className="grid grid-cols-2 gap-6">
+              <div>
+                <p className="text-[clamp(0.88rem,3vw,0.96rem)] font-medium text-muted">신랑</p>
+                <p className="mt-2 font-sans text-[clamp(1.54rem,5.5vw,1.94rem)] font-semibold leading-none text-text">
+                  {site.couple.groom}
+                </p>
+              </div>
+              <div>
+                <p className="text-[clamp(0.88rem,3vw,0.96rem)] font-medium text-muted">신부</p>
+                <p className="mt-2 font-sans text-[clamp(1.54rem,5.5vw,1.94rem)] font-semibold leading-none text-text">
+                  {site.couple.bride}
+                </p>
+              </div>
             </div>
-
-            <div className="grid gap-4">
-              <div className="rounded-[22px] border border-[rgba(88,74,64,0.08)] bg-white/72 px-7 py-5 shadow-[inset_0_1px_0_rgba(255,255,255,0.45)] sm:px-9 lg:px-10">
-                <p className="luxury-kicker text-muted">Date &amp; Time</p>
-                <p className="mt-3 text-[clamp(0.76rem,1.8vw,0.84rem)] leading-8 tracking-[-0.015em] text-text sm:leading-8">
-                  {formatFullDate(site.weddingDateTime)} {formatTime(site.weddingDateTime)}
-                </p>
-              </div>
-
-              <div className="rounded-[22px] border border-[rgba(88,74,64,0.08)] bg-white/72 px-7 py-5 shadow-[inset_0_1px_0_rgba(255,255,255,0.45)] sm:px-9 lg:px-10">
-                <p className="luxury-kicker text-muted">Venue</p>
-                <p className="mt-3 text-[clamp(0.76rem,1.8vw,0.84rem)] leading-8 tracking-[-0.015em] text-text sm:leading-8">
-                  {site.venue.name}
-                </p>
-                <div className="mt-1 flex items-start gap-2 text-[clamp(1rem,2.4vw,1.08rem)] leading-8 tracking-[-0.015em] text-muted sm:leading-8">
-                  <MapPin className="mt-1 h-4 w-4 shrink-0 text-accent" />
-                  <p className="balanced-copy">{site.venue.address}</p>
-                </div>
-              </div>
+            <div className="mt-4 space-y-0.5 text-center text-muted">
+              <p className="font-medium text-[clamp(0.84rem,3vw,0.92rem)]">{compactDate}</p>
+              <p className="text-[clamp(0.84rem,3vw,0.92rem)]">{heroLocation}</p>
             </div>
           </motion.div>
         </div>
@@ -134,88 +141,18 @@ export default function Home() {
           id="invitation"
           className="bg-[linear-gradient(180deg,rgba(255,250,246,0.96),rgba(251,245,239,0.92))]"
         >
-          <SectionHeading eyebrow="Invitation" title={story.invitationTitle} align="center" />
-          <div className="relative mx-auto mt-10 max-w-4xl px-3 text-center sm:px-6 lg:px-8">
+          <SectionHeading eyebrow="OUR WEDDING" align="center" />
+          <div className="relative mx-auto mt-8 max-w-4xl px-3 text-center sm:px-5">
             <div className="pointer-events-none absolute left-1/2 top-8 h-28 w-28 -translate-x-1/2 rounded-full bg-[rgba(245,228,214,0.26)] blur-3xl" />
 
             <div className="relative">
-              <p className="font-serif text-[1.68rem] leading-[1.06] tracking-[-0.04em] text-text sm:text-[2.35rem] lg:text-[2.8rem]">
-                {site.couple.groom} &amp; {site.couple.bride}
-              </p>
-              <div className="mx-auto mt-5 h-px w-24 bg-[linear-gradient(90deg,transparent,rgba(184,143,115,0.55),transparent)]" />
-
-              <p className="balanced-copy mx-auto mt-9 max-w-2xl text-[1rem] leading-[1.95] tracking-[-0.02em] text-text sm:text-[1.14rem] sm:leading-[2.05]">
-                {story.invitationBody[0]}
-              </p>
-
-              <div className="mx-auto mt-7 h-10 w-px bg-[linear-gradient(180deg,rgba(184,143,115,0.06),rgba(184,143,115,0.44),rgba(184,143,115,0.06))]" />
-
-              <div className="balanced-copy mx-auto mt-7 max-w-[56rem] space-y-6 text-[14px] leading-7 text-muted sm:text-[15px] sm:leading-8">
-                {story.invitationBody.slice(1).map((paragraph, index) => (
-                  <p key={`${paragraph}-${index}`}>{paragraph}</p>
+              <div className="mx-auto mt-8 max-w-[20rem] space-y-6 text-center font-sans text-[clamp(1.05rem,4.5vw,1.2rem)] font-medium leading-[2.15] text-text">
+                {story.invitationBody.map((paragraph, index) => (
+                  <p key={`${paragraph}-${index}`} className="whitespace-pre-line">
+                    {paragraph}
+                  </p>
                 ))}
               </div>
-            </div>
-          </div>
-        </SectionShell>
-
-<SectionShell id="details">
-          <SectionHeading
-            eyebrow="Wedding Details"
-            title="편안한 식사와 함께 마음을 나누는 자리에 모십니다."
-            align="center"
-          />
-          <div className="mt-8 grid gap-4">
-            <div className="section-panel rounded-[26px] px-6 py-5 text-center sm:px-8 sm:py-6 lg:px-9 lg:py-7">
-              <div className="flex items-center justify-center gap-3 text-text">
-                <CalendarDays className="h-5 w-5 text-accent" />
-                <p className="luxury-kicker text-muted">When</p>
-              </div>
-              <div className="mt-5">
-                <p className="font-serif text-[clamp(1.12rem,3vw,1.4rem)] leading-[1.12] tracking-[-0.04em] text-text">
-                  {formatFullDate(site.weddingDateTime)}
-                </p>
-                <p className="mt-2 font-serif text-[clamp(1.12rem,3vw,1.4rem)] leading-[1.12] tracking-[-0.04em] text-text">
-                  {formatTime(site.weddingDateTime)}
-                </p>
-              </div>
-            </div>
-
-            <div className="px-2 sm:px-3">
-              <Link
-                href="/api/calendar"
-                className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-text px-5 py-4 text-sm font-semibold text-white transition duration-500 hover:bg-[#4c3f35]"
-              >
-                <span className="text-white">캘린더 추가</span>
-                <CalendarDays className="h-4 w-4 text-white" />
-              </Link>
-            </div>
-
-            <div className="section-panel rounded-[26px] px-6 py-5 sm:px-8 sm:py-6 lg:px-9 lg:py-7">
-              <div className="flex items-center gap-3 text-text">
-                <MapPinned className="h-5 w-5 text-accent" />
-                <p className="luxury-kicker text-muted">Where</p>
-              </div>
-              <div className="mt-5">
-                <p className="font-serif text-[clamp(1.12rem,3vw,1.4rem)] leading-[1.12] tracking-[-0.04em] text-text">
-                  {site.venue.name}
-                </p>
-                <p className="balanced-copy mt-3 text-[clamp(0.98rem,2vw,1.08rem)] leading-8 text-text">
-                  {site.venue.address}
-                </p>
-              </div>
-            </div>
-
-            <div className="px-2 sm:px-3">
-              <a
-                href={mapUrl}
-                target="_blank"
-                rel="noreferrer"
-                className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-text px-5 py-4 text-sm font-semibold text-white transition duration-500 hover:bg-[#4c3f35]"
-              >
-                <span className="text-white">오시는 길 보기</span>
-                <ExternalLink className="h-4 w-4 shrink-0 text-white" />
-              </a>
             </div>
           </div>
         </SectionShell>
@@ -235,10 +172,9 @@ export default function Home() {
         <SectionShell id="gallery">
           <SectionHeading
             eyebrow="Gallery"
-            title="함께한 계절의 몇 장면"
             align="center"
           />
-          <Gallery photos={photos} />
+          <Gallery photos={galleryPhotos} />
         </SectionShell>
 
         {accounts.enabled ? (
@@ -246,7 +182,6 @@ export default function Home() {
             <SectionHeading
               eyebrow="Blessing"
               title={accounts.title}
-              description="신랑측과 신부측 연락처 및 계좌 정보를 한곳에 정리했습니다."
               align="center"
             />
             <AccountsSection content={accounts} />
@@ -255,17 +190,18 @@ export default function Home() {
 
         <SectionShell id="share">
           <div className="flex flex-col items-center gap-6 text-center">
-            <SectionHeading
-              eyebrow="Share"
-              title="한 번의 탭으로 이 초대장을 전해보세요."
-              align="center"
-            />
+            <div className="mx-auto w-full max-w-[72rem] text-center">
+              <p className="ornament mx-auto mb-4 inline-flex luxury-kicker text-accent">Share</p>
+              <h2 className="mx-auto max-w-[28ch] font-serif text-[clamp(0.96rem,3.7vw,1.16rem)] leading-[1.16] text-text">
+                한 번의 탭으로 이 초대장을 전해보세요.
+              </h2>
+            </div>
             <ShareActions title={meta.title} text={meta.description} siteUrl={meta.siteUrl} />
           </div>
         </SectionShell>
 
         {site.bgm.enabled ? (
-          <section className="sticky bottom-4 z-20 mx-auto w-full max-w-[22rem] px-4 pb-6">
+          <section className="sticky bottom-4 z-20 mx-auto w-full max-w-full px-2 pb-6">
             <BgmPlayer src={site.bgm.src} title={site.bgm.title} artist={site.bgm.artist} />
           </section>
         ) : null}

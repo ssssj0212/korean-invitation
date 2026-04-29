@@ -1,6 +1,6 @@
 type SectionHeadingProps = {
   eyebrow?: string;
-  title: string;
+  title?: string;
   description?: string;
   align?: "left" | "center";
 };
@@ -13,20 +13,20 @@ export function SectionHeading({
 }: SectionHeadingProps) {
   const isCenter = align === "center";
   const titleClassName = isCenter
-    ? "mx-auto max-w-[26ch] font-serif text-[1.55rem] leading-[1.08] tracking-[-0.03em] text-text sm:max-w-[30ch] sm:text-[2rem] md:max-w-[22ch] md:text-[2.15rem] lg:max-w-[28ch] lg:text-[2.45rem] xl:max-w-none xl:whitespace-nowrap"
-    : "max-w-[24ch] font-serif text-[1.55rem] leading-[1.08] tracking-[-0.03em] text-text sm:max-w-[30ch] sm:text-[1.95rem] md:max-w-none md:text-[2.2rem] md:whitespace-nowrap lg:text-[2.4rem]";
+    ? "mx-auto max-w-[24ch] font-serif text-[clamp(1.45rem,6vw,2rem)] leading-[1.08] text-text sm:max-w-[26ch]"
+    : "max-w-[24ch] font-serif text-[clamp(1.4rem,5.7vw,1.92rem)] leading-[1.08] text-text";
   const descriptionClassName = isCenter
-    ? "balanced-copy mx-auto mt-4 max-w-[42rem] text-[13px] leading-7 text-muted sm:text-[14.5px] sm:leading-8"
-    : "balanced-copy mt-4 max-w-2xl text-[13px] leading-7 text-muted sm:text-[14.5px] sm:leading-8 md:max-w-4xl";
+    ? "balanced-copy mx-auto mt-4 max-w-[28rem] text-[clamp(0.82rem,3.2vw,0.96rem)] leading-7 text-muted"
+    : "balanced-copy mt-4 max-w-[28rem] text-[clamp(0.82rem,3.2vw,0.96rem)] leading-7 text-muted";
 
   return (
-    <div className={isCenter ? "mx-auto w-full max-w-[72rem] text-center" : "max-w-5xl text-left"}>
+    <div className={isCenter ? "mx-auto w-full max-w-full text-center" : "max-w-full text-left"}>
       {eyebrow ? (
         <p className={`ornament mb-4 inline-flex luxury-kicker text-accent ${isCenter ? "mx-auto" : ""}`}>
           {eyebrow}
         </p>
       ) : null}
-      <h2 className={titleClassName}>{title}</h2>
+      {title ? <h2 className={titleClassName}>{title}</h2> : null}
       {description ? <p className={descriptionClassName}>{description}</p> : null}
     </div>
   );

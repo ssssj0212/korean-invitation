@@ -161,16 +161,40 @@ summary::-webkit-details-marker {
   overflow-wrap: break-word;
 }
 
+.hero-photo-reveal {
+  animation: hero-photo-reveal 5s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes hero-photo-reveal {
+  from {
+    opacity: 0.28;
+    filter: blur(10px) saturate(0.7) brightness(1.16);
+    transform: scale(1.018);
+  }
+
+  to {
+    opacity: 1;
+    filter: blur(0) saturate(1) brightness(1);
+    transform: scale(1);
+  }
+}
+
 .countdown-item {
   @apply rounded-[24px] border border-line/80 bg-white/80 px-3 py-4 text-center sm:px-4 sm:py-5;
 }
 
 .countdown-value {
-  @apply font-serif text-[1.55rem] leading-none text-text sm:text-[1.9rem];
+  font-family: var(--font-serif), serif;
+  font-size: clamp(1.2rem, 6vw, 1.7rem);
+  line-height: 1;
+  color: var(--color-text);
 }
 
 .countdown-label {
-  @apply text-[8px] uppercase tracking-[0.16em] text-muted sm:text-[9px] sm:tracking-[0.18em];
+  font-size: clamp(7px, 2vw, 9px);
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: var(--color-muted);
 }
 
 .gallery-grid {

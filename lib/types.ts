@@ -36,6 +36,8 @@ export type PhotoItem = {
   src: string;
   alt: string;
   caption?: string;
+  width?: number;
+  height?: number;
 };
 
 export type ScheduleItem = {

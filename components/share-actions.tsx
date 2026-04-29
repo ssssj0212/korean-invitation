@@ -15,12 +15,14 @@ export function ShareActions({ siteUrl }: ShareActionsProps) {
   const [copied, setCopied] = useState(false);
 
   const shareUrl = useMemo(() => {
-    if (isValidUrl(siteUrl)) {
-      return siteUrl;
+    const configuredUrl = siteUrl ?? "";
+
+    if (isValidUrl(configuredUrl)) {
+      return configuredUrl.replace(/\/$/, "");
     }
 
     if (typeof window !== "undefined") {
-      return window.location.href;
+      return window.location.origin;
     }
 
     return "";
