@@ -70,6 +70,15 @@ select {
   font: inherit;
 }
 
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+button {
+  touch-action: manipulation;
+}
+
 summary::-webkit-details-marker {
   display: none;
 }
@@ -84,6 +93,32 @@ summary::-webkit-details-marker {
   background:
     linear-gradient(180deg, rgba(255, 252, 248, 0.96), rgba(250, 245, 239, 0.92)),
     rgba(255, 251, 246, 0.95);
+}
+
+.pressable {
+  transition:
+    transform 0.18s ease-out,
+    box-shadow 0.18s ease-out,
+    border-color 0.18s ease-out,
+    color 0.18s ease-out,
+    background-color 0.18s ease-out;
+}
+
+.pressable:active {
+  transform: translateY(1px) scale(0.97);
+  box-shadow: 0 5px 14px rgba(76, 57, 43, 0.08);
+}
+
+.pressable:disabled,
+.pressable[aria-disabled="true"] {
+  transform: none;
+  box-shadow: none;
+}
+
+@media (hover: hover) {
+  .pressable:not(:disabled):hover {
+    box-shadow: 0 10px 24px rgba(76, 57, 43, 0.1);
+  }
 }
 
 .editorial-divider {
@@ -161,21 +196,197 @@ summary::-webkit-details-marker {
   overflow-wrap: break-word;
 }
 
+.hero-light-leak {
+  position: relative;
+  isolation: isolate;
+}
+
+.hero-light-leak::before,
+.hero-light-leak::after {
+  content: "";
+  position: absolute;
+  z-index: 2;
+  pointer-events: none;
+  border-radius: inherit;
+}
+
+.hero-light-leak::before {
+  inset: -18% -18% auto auto;
+  width: 72%;
+  height: 42%;
+  background:
+    radial-gradient(circle at 70% 20%, rgba(255, 255, 255, 0.34), transparent 46%),
+    radial-gradient(circle at 48% 40%, rgba(255, 236, 226, 0.2), transparent 58%);
+  filter: blur(18px);
+  opacity: 0.62;
+}
+
+.hero-light-leak::after {
+  inset: auto auto -14% -16%;
+  width: 62%;
+  height: 34%;
+  background: radial-gradient(circle at 24% 74%, rgba(255, 246, 236, 0.22), transparent 64%);
+  filter: blur(20px);
+  opacity: 0.5;
+}
+
 .hero-photo-reveal {
-  animation: hero-photo-reveal 5s cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation: hero-photo-reveal 3s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.petal-layer {
+  position: absolute;
+  inset: 0;
+  z-index: 4;
+  overflow: hidden;
+  pointer-events: none;
+  border-radius: inherit;
+}
+
+.petal {
+  position: absolute;
+  top: -10%;
+  left: var(--petal-left);
+  width: var(--petal-size);
+  height: calc(var(--petal-size) * 1.38);
+  border-radius: 72% 28% 70% 30% / 62% 38% 66% 34%;
+  background:
+    radial-gradient(circle at 38% 28%, rgba(255, 255, 255, 0.78), transparent 34%),
+    linear-gradient(135deg, var(--petal-color), rgba(255, 255, 255, 0.58));
+  opacity: var(--petal-opacity);
+  filter: blur(0.1px);
+  transform: translate3d(0, -12%, 0) rotate(var(--petal-rotate));
+  animation: petal-fall var(--petal-duration) var(--petal-delay) linear infinite;
+  will-change: transform, opacity;
+}
+
+.petal-1 {
+  --petal-left: 12%;
+  --petal-size: 8px;
+  --petal-color: rgba(255, 250, 244, 0.72);
+  --petal-opacity: 0.26;
+  --petal-duration: 13.5s;
+  --petal-delay: -1.2s;
+  --petal-rotate: -18deg;
+  --petal-drift: 18px;
+}
+
+.petal-2 {
+  --petal-left: 31%;
+  --petal-size: 11px;
+  --petal-color: rgba(255, 239, 235, 0.7);
+  --petal-opacity: 0.22;
+  --petal-duration: 15.8s;
+  --petal-delay: -7.4s;
+  --petal-rotate: 12deg;
+  --petal-drift: -14px;
+}
+
+.petal-3 {
+  --petal-left: 47%;
+  --petal-size: 7px;
+  --petal-color: rgba(255, 255, 250, 0.74);
+  --petal-opacity: 0.3;
+  --petal-duration: 11.6s;
+  --petal-delay: -4.2s;
+  --petal-rotate: 28deg;
+  --petal-drift: 12px;
+}
+
+.petal-4 {
+  --petal-left: 64%;
+  --petal-size: 13px;
+  --petal-color: rgba(255, 236, 231, 0.66);
+  --petal-opacity: 0.2;
+  --petal-duration: 16s;
+  --petal-delay: -9.1s;
+  --petal-rotate: -8deg;
+  --petal-drift: -20px;
+}
+
+.petal-5 {
+  --petal-left: 79%;
+  --petal-size: 9px;
+  --petal-color: rgba(255, 251, 242, 0.72);
+  --petal-opacity: 0.28;
+  --petal-duration: 12.8s;
+  --petal-delay: -2.9s;
+  --petal-rotate: 22deg;
+  --petal-drift: 16px;
+}
+
+.petal-6 {
+  --petal-left: 88%;
+  --petal-size: 6px;
+  --petal-color: rgba(255, 246, 249, 0.72);
+  --petal-opacity: 0.24;
+  --petal-duration: 10.8s;
+  --petal-delay: -6.3s;
+  --petal-rotate: -26deg;
+  --petal-drift: -10px;
+}
+
+.petal-7 {
+  --petal-left: 22%;
+  --petal-size: 14px;
+  --petal-color: rgba(255, 248, 240, 0.62);
+  --petal-opacity: 0.18;
+  --petal-duration: 15s;
+  --petal-delay: -11.2s;
+  --petal-rotate: 6deg;
+  --petal-drift: 22px;
+}
+
+@keyframes petal-fall {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, -12%, 0) rotate(var(--petal-rotate));
+  }
+
+  12% {
+    opacity: var(--petal-opacity);
+  }
+
+  44% {
+    transform: translate3d(calc(var(--petal-drift) * 0.65), 48vh, 0) rotate(calc(var(--petal-rotate) + 34deg));
+  }
+
+  78% {
+    opacity: var(--petal-opacity);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translate3d(var(--petal-drift), 112vh, 0) rotate(calc(var(--petal-rotate) + 68deg));
+  }
 }
 
 @keyframes hero-photo-reveal {
   from {
-    opacity: 0.28;
-    filter: blur(10px) saturate(0.7) brightness(1.16);
-    transform: scale(1.018);
+    opacity: 0;
+    filter: blur(8px) saturate(0.74) brightness(1.12);
+    transform: translateY(12px) scale(1.014);
   }
 
   to {
     opacity: 1;
     filter: blur(0) saturate(1) brightness(1);
-    transform: scale(1);
+    transform: translateY(0) scale(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.001ms !important;
+  }
+
+  .petal-layer {
+    display: none;
   }
 }
 

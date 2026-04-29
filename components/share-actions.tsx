@@ -43,7 +43,7 @@ export function ShareActions({ siteUrl }: ShareActionsProps) {
       <button
         type="button"
         onClick={handleCopy}
-        className="inline-flex items-center gap-2 rounded-full border border-[rgba(88,74,64,0.08)] bg-white/88 px-4 py-3 text-sm font-semibold text-text transition duration-500 hover:border-accent/40 hover:text-accent"
+        className="pressable inline-flex items-center gap-2 rounded-full border border-[rgba(88,74,64,0.08)] bg-white/88 px-4 py-3 text-sm font-semibold text-text hover:border-accent/40 hover:text-accent"
       >
         {copied ? <Check className="h-4 w-4" /> : <Copy className="h-4 w-4" />}
         <span>{copied ? "복사됨" : "링크 복사"}</span>

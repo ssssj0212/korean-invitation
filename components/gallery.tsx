@@ -77,7 +77,7 @@ export function Gallery({ photos }: { photos: PhotoItem[] }) {
               onClick={() => handleSelect(index)}
               animate={{ scale: 1, y: 0 }}
               transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
-              className="relative overflow-hidden rounded-[24px] text-left"
+              className="pressable relative overflow-hidden rounded-[24px] text-left"
               aria-label={`${photo.alt} 선택`}
             >
               <div className="flex min-h-[150px] items-center justify-center sm:min-h-[180px]">
@@ -101,7 +101,7 @@ export function Gallery({ photos }: { photos: PhotoItem[] }) {
               type="button"
               onClick={goPrev}
               disabled={isPrevDisabled}
-              className={`inline-flex items-center gap-1.5 rounded-full px-2.5 py-2 text-[clamp(0.8rem,3vw,0.92rem)] font-medium transition ${
+              className={`pressable inline-flex items-center gap-1.5 rounded-full px-2.5 py-2 text-[clamp(0.8rem,3vw,0.92rem)] font-medium ${
                 isPrevDisabled ? "cursor-default text-muted/45" : "text-text hover:text-accent"
               }`}
             >
@@ -115,7 +115,7 @@ export function Gallery({ photos }: { photos: PhotoItem[] }) {
               type="button"
               onClick={goNext}
               disabled={isNextDisabled}
-              className={`inline-flex items-center gap-1.5 rounded-full px-2.5 py-2 text-[clamp(0.8rem,3vw,0.92rem)] font-medium transition ${
+              className={`pressable inline-flex items-center gap-1.5 rounded-full px-2.5 py-2 text-[clamp(0.8rem,3vw,0.92rem)] font-medium ${
                 isNextDisabled ? "cursor-default text-muted/45" : "text-text hover:text-accent"
               }`}
             >

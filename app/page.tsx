@@ -62,7 +62,7 @@ export default function Home() {
                 key={section.id}
                 type="button"
                 onClick={() => scrollToSection(section.id)}
-                className="inline-flex min-w-0 items-center justify-center gap-1 rounded-full px-0 py-2 text-[clamp(10.5px,2.55vw,11.5px)] font-medium tracking-[0] text-muted transition duration-500 hover:bg-white/90 hover:text-text"
+                className="pressable inline-flex min-w-0 items-center justify-center gap-1 rounded-full px-0 py-2 text-[clamp(10.5px,2.55vw,11.5px)] font-medium tracking-[0] text-muted hover:bg-white/90 hover:text-text"
               >
                 <Icon className="h-3.5 w-3.5 shrink-0" />
                 <span className="whitespace-nowrap">{section.label}</span>
@@ -82,8 +82,8 @@ export default function Home() {
           <motion.div
             initial={{ opacity: 0, y: 18 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
-            className="relative aspect-[2/3] overflow-hidden rounded-[30px]"
+            transition={{ duration: 1.05, ease: [0.22, 1, 0.36, 1] }}
+            className="hero-light-leak relative aspect-[2/3] overflow-hidden rounded-[30px]"
           >
             <PhotoFrame
               src={heroPhoto?.src}
@@ -93,13 +93,18 @@ export default function Home() {
               className="hero-photo-reveal h-full min-h-0 rounded-[30px] object-center"
               sizes="100vw"
             />
-            <div className="absolute inset-x-0 bottom-0 h-[31%] bg-[linear-gradient(180deg,rgba(19,14,10,0),rgba(36,27,20,0.04)_44%,rgba(36,27,20,0.13)_100%)]" />
+            <div className="petal-layer" aria-hidden="true">
+              {Array.from({ length: 7 }).map((_, index) => (
+                <span key={index} className={`petal petal-${index + 1}`} />
+              ))}
+            </div>
+            <div className="absolute inset-x-0 bottom-0 z-[3] h-[31%] bg-[linear-gradient(180deg,rgba(19,14,10,0),rgba(36,27,20,0.04)_44%,rgba(36,27,20,0.13)_100%)]" />
 
-            <div className="absolute inset-x-0 top-4 flex justify-center px-8 text-center text-[#fdf8f3] sm:top-8">
+            <div className="absolute inset-x-0 top-4 z-10 flex justify-center px-8 text-center text-[#fdf8f3] sm:top-8">
               <p className="luxury-kicker text-center text-white/96">Wedding Invitation</p>
             </div>
 
-            <div className="pointer-events-none absolute inset-x-0 top-[24%] flex justify-center px-6 text-center text-white">
+            <div className="pointer-events-none absolute inset-x-0 top-[24%] z-10 flex justify-center px-6 text-center text-white">
               <p
                 className={`${windsong.className} w-full max-w-[18rem] whitespace-pre-line text-[clamp(2.82rem,12.1vw,4.12rem)] font-normal leading-[0.74] [text-shadow:0_2px_10px_rgba(0,0,0,0.08)]`}
               >
@@ -111,7 +116,7 @@ export default function Home() {
           <motion.div
             initial={{ opacity: 0, y: 18 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 0.08, ease: [0.22, 1, 0.36, 1] }}
+            transition={{ duration: 1.05, delay: 0.08, ease: [0.22, 1, 0.36, 1] }}
             className="section-panel rounded-[24px] px-6 py-5 text-center"
           >
             <div className="grid grid-cols-2 gap-6">

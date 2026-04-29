@@ -29,11 +29,11 @@ export function AccountsSection({ content }: { content: AccountsContent }) {
           {content.groups.map((group) => {
             const isActive = group.id === activeGroupId;
             return (
-              <button
-                key={group.id}
-                type="button"
-                onClick={() => setActiveGroupId((current) => (current === group.id ? null : group.id))}
-                className={`rounded-full border px-4 py-3 text-center transition duration-300 ${
+                <button
+                  key={group.id}
+                  type="button"
+                  onClick={() => setActiveGroupId((current) => (current === group.id ? null : group.id))}
+                className={`pressable rounded-full border px-4 py-3 text-center ${
                   isActive
                     ? "border-[rgba(88,74,64,0.18)] bg-text text-white"
                     : "border-[rgba(88,74,64,0.08)] bg-white/88 text-text hover:border-accent/40"
@@ -83,11 +83,12 @@ export function AccountsSection({ content }: { content: AccountsContent }) {
                           </div>
                           <button
                             type="button"
-                            className="inline-flex shrink-0 items-center gap-2 rounded-full border border-[rgba(88,74,64,0.08)] bg-white/88 px-2.5 py-1.5 text-[9px] font-semibold uppercase tracking-[0.08em] text-text transition duration-500 hover:border-accent/40 hover:text-accent sm:px-3 sm:py-2 sm:text-[10px] sm:tracking-[0.12em]"
+                            className="pressable inline-flex shrink-0 items-center gap-1.5 rounded-full border border-[rgba(88,74,64,0.08)] bg-white/88 px-2.5 py-1.5 text-[9px] font-semibold uppercase tracking-[0.08em] text-text hover:border-accent/40 hover:text-accent sm:px-3 sm:py-2 sm:text-[10px] sm:tracking-[0.12em]"
                             onClick={() => copy(account.accountNumber)}
                             aria-label={`${account.label} 계좌번호 복사`}
                           >
                             {copied === account.accountNumber ? <Check className="h-3.5 w-3.5" /> : <Copy className="h-3.5 w-3.5" />}
+                            <span>{copied === account.accountNumber ? "복사됨" : "복사"}</span>
                           </button>
                         </div>
                       </div>
