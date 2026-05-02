@@ -39,17 +39,17 @@ export default function Home() {
 
   return (
     <main
-      className="mx-auto flex min-h-screen w-full max-w-[430px] flex-col px-3 pb-16 pt-4 text-text sm:px-4"
+      className="mx-auto flex min-h-[100svh] w-full max-w-[430px] flex-col px-3 pb-16 pt-4 text-text sm:px-4"
       style={{ ["--color-accent" as string]: site.accentColor }}
     >
       <motion.nav
-        initial={{ opacity: 0, y: -12 }}
+        initial={{ opacity: 0, y: 16 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-        className="sticky top-3 z-30 mb-5 rounded-full border border-white/60 bg-[rgba(255,251,246,0.72)] px-1.5 py-2 shadow-[0_12px_30px_rgba(77,57,43,0.08)] backdrop-blur-xl"
+        transition={{ duration: 1.02, ease: [0.22, 1, 0.36, 1] }}
+        className="sticky top-3 z-30 mb-6 rounded-full border border-[rgba(232,222,210,0.88)] bg-[rgba(255,252,247,0.8)] px-2 py-2 shadow-[0_12px_28px_rgba(77,57,43,0.045)] backdrop-blur-xl"
         aria-label="Section navigation"
       >
-        <div className="flex w-full items-center justify-between">
+        <div className="flex w-full items-center justify-center gap-3">
           {[
             { id: "home", label: "홈", icon: House },
             { id: "invitation", label: "안내", icon: MapPinned },
@@ -62,9 +62,9 @@ export default function Home() {
                 key={section.id}
                 type="button"
                 onClick={() => scrollToSection(section.id)}
-                className="pressable inline-flex min-w-0 items-center justify-center gap-1 rounded-full px-0 py-2 text-[clamp(10.5px,2.55vw,11.5px)] font-medium tracking-[0] text-muted hover:bg-white/90 hover:text-text"
+                className="pressable inline-flex min-w-0 items-center justify-center gap-[2px] rounded-full px-1 py-1.5 font-sans text-[clamp(8.2px,1.95vw,9.1px)] font-normal tracking-[-0.045em] text-muted hover:bg-[rgba(255,255,255,0.58)] hover:text-text"
               >
-                <Icon className="h-3.5 w-3.5 shrink-0" />
+                <Icon className="h-[10px] w-[10px] shrink-0 stroke-[1.9]" />
                 <span className="whitespace-nowrap">{section.label}</span>
               </button>
             );
@@ -72,17 +72,15 @@ export default function Home() {
         </div>
       </motion.nav>
 
-      <section id="home" className="section-card relative overflow-hidden px-4 pb-4 pt-4 sm:px-6 sm:pb-6 sm:pt-6">
+      <section id="home" className="section-card relative overflow-hidden px-4 pb-5 pt-4 sm:px-6 sm:pb-7 sm:pt-6">
         <div className="pointer-events-none absolute inset-0">
           <div className="absolute -left-10 top-10 h-32 w-32 rounded-full bg-[#f6e7d9]/50 blur-3xl" />
           <div className="absolute right-0 top-1/3 h-40 w-40 rounded-full bg-[#efe0d2]/45 blur-3xl" />
         </div>
 
-        <div className="relative grid gap-5">
+        <div className="relative grid gap-0">
           <motion.div
-            initial={{ opacity: 0, y: 18 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1.05, ease: [0.22, 1, 0.36, 1] }}
+            initial={false}
             className="hero-light-leak relative aspect-[2/3] overflow-hidden rounded-[30px]"
           >
             <PhotoFrame
@@ -90,15 +88,19 @@ export default function Home() {
               alt={heroPhoto?.alt ?? "Wedding hero image"}
               priority
               fit="cover"
-              className="hero-photo-reveal h-full min-h-0 rounded-[30px] object-center"
-              sizes="100vw"
+              className="hero-photo-reveal z-0 h-full min-h-0 rounded-[30px] object-center"
+              sizes="(max-width: 430px) calc(100vw - 38px), 392px"
+            />
+            <div
+              className="pointer-events-none absolute inset-0 z-[1] rounded-[30px] bg-[linear-gradient(180deg,rgba(255,250,244,0.1),rgba(246,232,219,0.08)_48%,rgba(255,255,255,0.04))]"
+              aria-hidden="true"
             />
             <div className="petal-layer" aria-hidden="true">
               {Array.from({ length: 7 }).map((_, index) => (
                 <span key={index} className={`petal petal-${index + 1}`} />
               ))}
             </div>
-            <div className="absolute inset-x-0 bottom-0 z-[3] h-[31%] bg-[linear-gradient(180deg,rgba(19,14,10,0),rgba(36,27,20,0.04)_44%,rgba(36,27,20,0.13)_100%)]" />
+            <div className="absolute inset-x-0 bottom-0 z-[3] h-[45%] bg-[linear-gradient(180deg,rgba(250,246,239,0)_0%,rgba(250,246,239,0.02)_18%,rgba(250,246,239,0.14)_40%,rgba(250,246,239,0.5)_62%,rgba(250,246,239,0.82)_80%,rgba(250,246,239,0.965)_92%,rgba(250,246,239,0.995)_100%)]" />
 
             <div className="absolute inset-x-0 top-4 z-10 flex justify-center px-8 text-center text-[#fdf8f3] sm:top-8">
               <p className="luxury-kicker text-center text-white/96">Wedding Invitation</p>
@@ -106,7 +108,7 @@ export default function Home() {
 
             <div className="pointer-events-none absolute inset-x-0 top-[24%] z-10 flex justify-center px-6 text-center text-white">
               <p
-                className={`${windsong.className} w-full max-w-[18rem] whitespace-pre-line text-[clamp(2.82rem,12.1vw,4.12rem)] font-normal leading-[0.74] [text-shadow:0_2px_10px_rgba(0,0,0,0.08)]`}
+                className={`${windsong.className} w-full max-w-[20rem] whitespace-pre-line text-[clamp(3.16rem,13.6vw,4.62rem)] font-normal leading-[0.72] [text-shadow:0_2px_10px_rgba(0,0,0,0.08)]`}
               >
                 {"Our\nWedding\nDay"}
               </p>
@@ -114,28 +116,33 @@ export default function Home() {
           </motion.div>
 
           <motion.div
-            initial={{ opacity: 0, y: 18 }}
+            initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1.05, delay: 0.08, ease: [0.22, 1, 0.36, 1] }}
-            className="section-panel rounded-[24px] px-6 py-5 text-center"
+            transition={{ duration: 1.02, delay: 0.08, ease: [0.22, 1, 0.36, 1] }}
+            className="relative z-10 -mt-5 mx-auto w-full max-w-[12.5rem] px-3 pb-4 pt-0 text-center"
           >
-            <div className="grid grid-cols-2 gap-6">
-              <div>
-                <p className="text-[clamp(0.88rem,3vw,0.96rem)] font-medium text-muted">신랑</p>
-                <p className="mt-2 font-sans text-[clamp(1.54rem,5.5vw,1.94rem)] font-semibold leading-none text-text">
+            <div className="mx-auto flex max-w-[10.25rem] flex-col items-center gap-[0.36rem]">
+              <div className="inline-flex items-baseline justify-center gap-[0.7rem]">
+                <span className="text-[clamp(0.68rem,2vw,0.72rem)] font-medium tracking-[0.045em] text-[#8a7969]">
+                  신랑
+                </span>
+                <span className="font-serif text-[clamp(1.03rem,3.15vw,1.13rem)] font-semibold tracking-[-0.022em] text-[#312820]">
                   {site.couple.groom}
-                </p>
+                </span>
               </div>
-              <div>
-                <p className="text-[clamp(0.88rem,3vw,0.96rem)] font-medium text-muted">신부</p>
-                <p className="mt-2 font-sans text-[clamp(1.54rem,5.5vw,1.94rem)] font-semibold leading-none text-text">
+              <div className="inline-flex items-baseline justify-center gap-[0.7rem]">
+                <span className="text-[clamp(0.68rem,2vw,0.72rem)] font-medium tracking-[0.045em] text-[#8a7969]">
+                  신부
+                </span>
+                <span className="font-serif text-[clamp(1.03rem,3.15vw,1.13rem)] font-semibold tracking-[-0.022em] text-[#312820]">
                   {site.couple.bride}
-                </p>
+                </span>
               </div>
             </div>
-            <div className="mt-4 space-y-0.5 text-center text-muted">
-              <p className="font-medium text-[clamp(0.84rem,3vw,0.92rem)]">{compactDate}</p>
-              <p className="text-[clamp(0.84rem,3vw,0.92rem)]">{heroLocation}</p>
+            <div className="mx-auto mt-2.5 h-px w-5 bg-[linear-gradient(90deg,transparent,rgba(181,150,114,0.34),transparent)]" />
+            <div className="mt-2 space-y-[0.14rem] text-center text-[#7d6b5c]">
+              <p className="font-medium tracking-[0.042em] text-[clamp(0.74rem,2.15vw,0.79rem)]">{compactDate}</p>
+              <p className="text-[clamp(0.68rem,2.05vw,0.74rem)] tracking-[0.008em]">{heroLocation}</p>
             </div>
           </motion.div>
         </div>
@@ -147,11 +154,11 @@ export default function Home() {
           className="bg-[linear-gradient(180deg,rgba(255,250,246,0.96),rgba(251,245,239,0.92))]"
         >
           <SectionHeading eyebrow="OUR WEDDING" align="center" />
-          <div className="relative mx-auto mt-8 max-w-4xl px-3 text-center sm:px-5">
+          <div className="relative mx-auto mt-10 max-w-4xl px-3 text-center sm:px-5">
             <div className="pointer-events-none absolute left-1/2 top-8 h-28 w-28 -translate-x-1/2 rounded-full bg-[rgba(245,228,214,0.26)] blur-3xl" />
 
             <div className="relative">
-              <div className="mx-auto mt-8 max-w-[20rem] space-y-6 text-center font-sans text-[clamp(1.05rem,4.5vw,1.2rem)] font-medium leading-[2.15] text-text">
+              <div className="balanced-copy mx-auto mt-9 max-w-[20.5rem] space-y-8 text-center font-sans text-[clamp(0.97rem,3.85vw,1.03rem)] leading-[2.04] text-[#5f5047]">
                 {story.invitationBody.map((paragraph, index) => (
                   <p key={`${paragraph}-${index}`} className="whitespace-pre-line">
                     {paragraph}
@@ -163,7 +170,7 @@ export default function Home() {
         </SectionShell>
 
         <SectionShell id="countdown" className="overflow-hidden">
-          <div className="flex flex-col items-center gap-8 text-center">
+          <div className="flex flex-col items-center gap-9 text-center">
             <SectionHeading
               eyebrow="Countdown"
               title="소중한 날을 기다리고 있습니다."
@@ -194,10 +201,10 @@ export default function Home() {
         ) : null}
 
         <SectionShell id="share">
-          <div className="flex flex-col items-center gap-6 text-center">
+          <div className="flex flex-col items-center gap-7 text-center">
             <div className="mx-auto w-full max-w-[72rem] text-center">
               <p className="ornament mx-auto mb-4 inline-flex luxury-kicker text-accent">Share</p>
-              <h2 className="mx-auto max-w-[28ch] font-serif text-[clamp(0.96rem,3.7vw,1.16rem)] leading-[1.16] text-text">
+              <h2 className="balanced-title mx-auto max-w-[28ch] font-serif text-[clamp(1rem,3.8vw,1.18rem)] leading-[1.22] text-text">
                 한 번의 탭으로 이 초대장을 전해보세요.
               </h2>
             </div>
