@@ -47,7 +47,7 @@ export function Countdown({ targetDate }: { targetDate: string }) {
 
   if (!timeLeft) {
     return (
-      <div className="grid w-full max-w-full grid-cols-4 gap-2 sm:gap-3" aria-label="카운트다운을 준비하고 있습니다">
+      <div className="grid w-full max-w-full grid-cols-4 gap-2.5 sm:gap-3.5" aria-label="카운트다운을 준비하고 있습니다">
         {["Days", "Hours", "Min", "Sec"].map((label) => (
           <div key={label} className="countdown-item">
             <div className="flex items-end justify-center gap-1.5 sm:gap-2">
@@ -68,7 +68,7 @@ export function Countdown({ targetDate }: { targetDate: string }) {
   ];
 
   return (
-    <div className="grid w-full max-w-full grid-cols-4 gap-2 sm:gap-3">
+    <div className="grid w-full max-w-full grid-cols-4 gap-2.5 sm:gap-3.5">
       {items.map((item) => (
         <div key={item.label} className="countdown-item">
           <div className="flex items-end justify-center gap-1.5 sm:gap-2">

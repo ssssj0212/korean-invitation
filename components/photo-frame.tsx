@@ -54,8 +54,14 @@ export function PhotoFrame({
         fill
         onError={() => setHasError(true)}
         priority={priority}
+        loading={priority ? undefined : "lazy"}
+        fetchPriority={priority ? "high" : undefined}
         sizes={sizes}
-        className={cn(fit === "cover" ? "object-cover" : "object-contain", "transition duration-500 ease-out", className)}
+        className={cn(
+          fit === "cover" ? "object-cover" : "object-contain",
+          "transition-opacity duration-500 ease-out",
+          className,
+        )}
       />
     );
   }
@@ -68,8 +74,10 @@ export function PhotoFrame({
       height={2000}
       onError={() => setHasError(true)}
       priority={priority}
+      loading={priority ? undefined : "lazy"}
+      fetchPriority={priority ? "high" : undefined}
       sizes={sizes}
-      className={cn("h-full w-full object-contain transition duration-500 ease-out", className)}
+      className={cn("h-full w-full object-contain transition-opacity duration-500 ease-out", className)}
     />
   );
 }

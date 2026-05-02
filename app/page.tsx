@@ -119,10 +119,10 @@ export default function Home() {
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1.02, delay: 0.08, ease: [0.22, 1, 0.36, 1] }}
-            className="relative z-10 -mt-5 mx-auto w-full max-w-[12.5rem] px-3 pb-4 pt-0 text-center"
+            className="relative z-10 -mt-5 mx-auto w-full max-w-[15.5rem] px-3 pb-4 pt-0 text-center"
           >
-            <div className="mx-auto flex max-w-[10.25rem] flex-col items-center gap-[0.36rem]">
-              <div className="inline-flex items-baseline justify-center gap-[0.7rem]">
+            <div className="mx-auto grid max-w-[13.25rem] grid-cols-2 items-baseline justify-items-center gap-x-5">
+              <div className="inline-flex items-baseline justify-center gap-[0.58rem] whitespace-nowrap">
                 <span className="text-[clamp(0.68rem,2vw,0.72rem)] font-medium tracking-[0.045em] text-[#8a7969]">
                   신랑
                 </span>
@@ -130,7 +130,7 @@ export default function Home() {
                   {site.couple.groom}
                 </span>
               </div>
-              <div className="inline-flex items-baseline justify-center gap-[0.7rem]">
+              <div className="inline-flex items-baseline justify-center gap-[0.58rem] whitespace-nowrap">
                 <span className="text-[clamp(0.68rem,2vw,0.72rem)] font-medium tracking-[0.045em] text-[#8a7969]">
                   신부
                 </span>

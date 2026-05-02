@@ -1,7 +1,7 @@
 import type { SiteConfig } from "@/lib/types";
 
 export const site: SiteConfig = {
-  accentColor: "#b58f77",
+  accentColor: "#B59672",
   couple: {
     groom: "신세진",
     bride: "김신혜",

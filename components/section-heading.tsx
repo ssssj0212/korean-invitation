@@ -13,11 +13,11 @@ export function SectionHeading({
 }: SectionHeadingProps) {
   const isCenter = align === "center";
   const titleClassName = isCenter
-    ? "mx-auto max-w-[24ch] font-serif text-[clamp(1.45rem,6vw,2rem)] leading-[1.08] text-text sm:max-w-[26ch]"
-    : "max-w-[24ch] font-serif text-[clamp(1.4rem,5.7vw,1.92rem)] leading-[1.08] text-text";
+    ? "balanced-title mx-auto max-w-[24ch] font-serif text-[clamp(1.36rem,5.4vw,1.72rem)] leading-[1.2] text-text sm:max-w-[26ch]"
+    : "balanced-title max-w-[24ch] font-serif text-[clamp(1.32rem,5.2vw,1.68rem)] leading-[1.2] text-text";
   const descriptionClassName = isCenter
-    ? "balanced-copy mx-auto mt-4 max-w-[28rem] text-[clamp(0.82rem,3.2vw,0.96rem)] leading-7 text-muted"
-    : "balanced-copy mt-4 max-w-[28rem] text-[clamp(0.82rem,3.2vw,0.96rem)] leading-7 text-muted";
+    ? "balanced-copy mx-auto mt-4 max-w-[22rem] text-[clamp(0.9rem,3.4vw,0.98rem)] leading-[1.9] text-muted"
+    : "balanced-copy mt-4 max-w-[22rem] text-[clamp(0.9rem,3.4vw,0.98rem)] leading-[1.9] text-muted";
 
   return (
     <div className={isCenter ? "mx-auto w-full max-w-full text-center" : "max-w-full text-left"}>

@@ -1,10 +1,29 @@
 import type { Metadata } from "next";
+import { Cormorant_Garamond, Gowun_Batang, Gowun_Dodum } from "next/font/google";
 
 import { getMeta } from "@/lib/content";
 
 import "./globals.css";
 
 const meta = getMeta();
+const gowunBatang = Gowun_Batang({
+  subsets: ["latin"],
+  weight: ["400", "700"],
+  variable: "--font-gowun-batang",
+  display: "swap",
+});
+const gowunDodum = Gowun_Dodum({
+  subsets: ["latin"],
+  weight: "400",
+  variable: "--font-gowun-dodum",
+  display: "swap",
+});
+const cormorant = Cormorant_Garamond({
+  subsets: ["latin"],
+  weight: ["500", "600"],
+  variable: "--font-cormorant",
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   metadataBase: meta.siteUrl ? new URL(meta.siteUrl) : undefined,
@@ -48,7 +67,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ko" className="h-full scroll-smooth">
-      <body>{children}</body>
+      <body className={`${gowunBatang.variable} ${gowunDodum.variable} ${cormorant.variable}`}>{children}</body>
     </html>
   );
 }
