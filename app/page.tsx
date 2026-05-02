@@ -106,9 +106,9 @@ export default function Home() {
               <p className="luxury-kicker text-center text-white/96">Wedding Invitation</p>
             </div>
 
-            <div className="pointer-events-none absolute inset-x-0 top-[24%] z-10 flex justify-center px-6 text-center text-white">
+            <div className="pointer-events-none absolute inset-x-0 top-[19.5%] z-10 flex justify-center px-6 text-center text-white">
               <p
-                className={`${windsong.className} w-full max-w-[20rem] whitespace-pre-line text-[clamp(3.16rem,13.6vw,4.62rem)] font-normal leading-[0.72] [text-shadow:0_2px_10px_rgba(0,0,0,0.08)]`}
+                className={`${windsong.className} w-full max-w-[18.9rem] whitespace-pre-line text-[clamp(2.82rem,12.15vw,4.08rem)] font-normal leading-[0.74] [text-shadow:0_2px_10px_rgba(0,0,0,0.08)]`}
               >
                 {"Our\nWedding\nDay"}
               </p>
