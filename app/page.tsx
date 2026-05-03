@@ -105,7 +105,7 @@ export default function Home() {
                 <span key={index} className={`petal petal-${index + 1}`} />
               ))}
             </div>
-            <div className="absolute inset-x-0 bottom-0 z-[3] h-[14%] bg-[linear-gradient(180deg,rgba(250,246,239,0)_0%,rgba(250,246,239,0)_74%,rgba(250,246,239,0.03)_84%,rgba(250,246,239,0.1)_91%,rgba(250,246,239,0.26)_96%,rgba(250,246,239,0.62)_100%)]" />
+            <div className="absolute inset-x-0 bottom-0 z-[3] h-[18%] bg-[radial-gradient(78%_140%_at_50%_100%,rgba(250,246,239,0.92)_0%,rgba(250,246,239,0.56)_30%,rgba(250,246,239,0.18)_58%,rgba(250,246,239,0)_74%),radial-gradient(54%_120%_at_12%_100%,rgba(250,246,239,0.85)_0%,rgba(250,246,239,0.42)_34%,rgba(250,246,239,0.12)_62%,rgba(250,246,239,0)_80%),radial-gradient(54%_120%_at_88%_100%,rgba(250,246,239,0.85)_0%,rgba(250,246,239,0.42)_34%,rgba(250,246,239,0.12)_62%,rgba(250,246,239,0)_80%),linear-gradient(180deg,rgba(250,246,239,0)_0%,rgba(250,246,239,0)_66%,rgba(250,246,239,0.03)_78%,rgba(250,246,239,0.16)_90%,rgba(250,246,239,0.52)_100%)]" />
 
             <div className="absolute inset-x-0 top-4 z-10 flex justify-center px-8 text-center text-[#fdf8f3] sm:top-8">
               <p
