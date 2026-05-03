@@ -81,18 +81,18 @@ export default function Home() {
         <div className="relative grid gap-0">
           <motion.div
             initial={false}
-            className="hero-light-leak relative aspect-[2/3] overflow-hidden rounded-[30px]"
+            className="hero-light-leak relative aspect-[2/3] overflow-hidden rounded-t-[30px] rounded-b-[8px]"
           >
             <PhotoFrame
               src={heroPhoto?.src}
               alt={heroPhoto?.alt ?? "Wedding hero image"}
               priority
               fit="cover"
-              className="hero-photo-reveal z-0 h-full min-h-0 rounded-[30px] object-center"
+              className="hero-photo-reveal z-0 h-full min-h-0 rounded-t-[30px] rounded-b-[8px] object-center"
               sizes="(max-width: 430px) calc(100vw - 38px), 392px"
             />
             <div
-              className="pointer-events-none absolute inset-0 z-[1] rounded-[30px] bg-[linear-gradient(180deg,rgba(255,250,244,0.1),rgba(246,232,219,0.08)_48%,rgba(255,255,255,0.04))]"
+              className="pointer-events-none absolute inset-0 z-[1] rounded-t-[30px] rounded-b-[8px] bg-[linear-gradient(180deg,rgba(255,250,244,0.1),rgba(246,232,219,0.08)_48%,rgba(255,255,255,0.04))]"
               aria-hidden="true"
             />
             <div className="petal-layer" aria-hidden="true">
@@ -100,15 +100,17 @@ export default function Home() {
                 <span key={index} className={`petal petal-${index + 1}`} />
               ))}
             </div>
-            <div className="absolute inset-x-0 bottom-0 z-[3] h-[45%] bg-[linear-gradient(180deg,rgba(250,246,239,0)_0%,rgba(250,246,239,0.02)_18%,rgba(250,246,239,0.14)_40%,rgba(250,246,239,0.5)_62%,rgba(250,246,239,0.82)_80%,rgba(250,246,239,0.965)_92%,rgba(250,246,239,0.995)_100%)]" />
+            <div className="absolute inset-x-0 bottom-0 z-[3] h-[30%] bg-[linear-gradient(180deg,rgba(250,246,239,0)_0%,rgba(250,246,239,0.03)_28%,rgba(250,246,239,0.12)_54%,rgba(250,246,239,0.48)_74%,rgba(250,246,239,0.86)_90%,rgba(250,246,239,0.985)_100%)]" />
 
             <div className="absolute inset-x-0 top-4 z-10 flex justify-center px-8 text-center text-[#fdf8f3] sm:top-8">
-              <p className="luxury-kicker text-center text-white/96">Wedding Invitation</p>
+              <p className="font-serif text-[11px] font-medium uppercase tracking-[0.42em] text-[#e9ddd0]/98 sm:text-[11.5px]">
+                WEDDING INVITATION
+              </p>
             </div>
 
-            <div className="pointer-events-none absolute inset-x-0 top-[19.5%] z-10 flex justify-center px-6 text-center text-white">
+            <div className="pointer-events-none absolute inset-x-0 top-[16.8%] z-10 flex justify-center px-6 text-center text-white">
               <p
-                className={`${windsong.className} w-full max-w-[18.9rem] whitespace-pre-line text-[clamp(2.82rem,12.15vw,4.08rem)] font-normal leading-[0.74] [text-shadow:0_2px_10px_rgba(0,0,0,0.08)]`}
+                className={`${windsong.className} w-full max-w-[17.4rem] whitespace-pre-line text-[clamp(2.56rem,10.95vw,3.72rem)] font-normal leading-[0.78] [text-shadow:0_2px_10px_rgba(0,0,0,0.08)]`}
               >
                 {"Our\nWedding\nDay"}
               </p>
@@ -119,7 +121,7 @@ export default function Home() {
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1.02, delay: 0.08, ease: [0.22, 1, 0.36, 1] }}
-            className="relative z-10 -mt-5 mx-auto w-full max-w-[15.5rem] px-3 pb-4 pt-0 text-center"
+            className="relative z-10 mt-1 mx-auto w-full max-w-[15.5rem] px-3 pb-4 pt-0 text-center"
           >
             <div className="mx-auto grid max-w-[13.25rem] grid-cols-2 items-baseline justify-items-center gap-x-5">
               <div className="inline-flex items-baseline justify-center gap-[0.58rem] whitespace-nowrap">
@@ -139,8 +141,8 @@ export default function Home() {
                 </span>
               </div>
             </div>
-            <div className="mx-auto mt-2.5 h-px w-5 bg-[linear-gradient(90deg,transparent,rgba(181,150,114,0.34),transparent)]" />
-            <div className="mt-2 space-y-[0.14rem] text-center text-[#7d6b5c]">
+            <div className="mx-auto mt-3 h-px w-5 bg-[linear-gradient(90deg,transparent,rgba(181,150,114,0.34),transparent)]" />
+            <div className="mt-2.5 space-y-[0.14rem] text-center text-[#7d6b5c]">
               <p className="font-medium tracking-[0.042em] text-[clamp(0.74rem,2.15vw,0.79rem)]">{compactDate}</p>
               <p className="text-[clamp(0.68rem,2.05vw,0.74rem)] tracking-[0.008em]">{heroLocation}</p>
             </div>
