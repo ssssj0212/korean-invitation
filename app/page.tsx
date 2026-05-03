@@ -105,7 +105,7 @@ export default function Home() {
                 <span key={index} className={`petal petal-${index + 1}`} />
               ))}
             </div>
-            <div className="absolute inset-x-0 bottom-0 z-[3] h-[18%] bg-[linear-gradient(180deg,rgba(250,246,239,0)_0%,rgba(250,246,239,0)_64%,rgba(250,246,239,0.018)_78%,rgba(250,246,239,0.08)_87%,rgba(250,246,239,0.24)_95%,rgba(250,246,239,0.68)_100%)]" />
+            <div className="absolute inset-x-0 bottom-0 z-[3] h-[14%] bg-[linear-gradient(180deg,rgba(250,246,239,0)_0%,rgba(250,246,239,0)_74%,rgba(250,246,239,0.03)_84%,rgba(250,246,239,0.1)_91%,rgba(250,246,239,0.26)_96%,rgba(250,246,239,0.62)_100%)]" />
 
             <div className="absolute inset-x-0 top-4 z-10 flex justify-center px-8 text-center text-[#fdf8f3] sm:top-8">
               <p
