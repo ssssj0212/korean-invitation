@@ -81,18 +81,18 @@ export default function Home() {
         <div className="relative grid gap-0">
           <motion.div
             initial={false}
-            className="hero-light-leak relative aspect-[2/3] overflow-hidden rounded-t-[30px] rounded-b-[8px]"
+            className="hero-light-leak relative aspect-[2/3] overflow-hidden rounded-t-[30px] rounded-b-none"
           >
             <PhotoFrame
               src={heroPhoto?.src}
               alt={heroPhoto?.alt ?? "Wedding hero image"}
               priority
               fit="cover"
-              className="hero-photo-reveal z-0 h-full min-h-0 rounded-t-[30px] rounded-b-[8px] object-center"
+              className="hero-photo-reveal z-0 h-full min-h-0 rounded-t-[30px] rounded-b-none object-center"
               sizes="(max-width: 430px) calc(100vw - 38px), 392px"
             />
             <div
-              className="pointer-events-none absolute inset-0 z-[1] rounded-t-[30px] rounded-b-[8px] bg-[linear-gradient(180deg,rgba(255,250,244,0.1),rgba(246,232,219,0.08)_48%,rgba(255,255,255,0.04))]"
+              className="pointer-events-none absolute inset-0 z-[1] rounded-t-[30px] rounded-b-none bg-[linear-gradient(180deg,rgba(255,250,244,0.1),rgba(246,232,219,0.08)_48%,rgba(255,255,255,0.04))]"
               aria-hidden="true"
             />
             <div className="petal-layer" aria-hidden="true">
@@ -100,7 +100,7 @@ export default function Home() {
                 <span key={index} className={`petal petal-${index + 1}`} />
               ))}
             </div>
-            <div className="absolute inset-x-0 bottom-0 z-[3] h-[30%] bg-[linear-gradient(180deg,rgba(250,246,239,0)_0%,rgba(250,246,239,0.03)_28%,rgba(250,246,239,0.12)_54%,rgba(250,246,239,0.48)_74%,rgba(250,246,239,0.86)_90%,rgba(250,246,239,0.985)_100%)]" />
+            <div className="absolute inset-x-0 bottom-0 z-[3] h-[24%] bg-[linear-gradient(180deg,rgba(250,246,239,0)_0%,rgba(250,246,239,0.02)_42%,rgba(250,246,239,0.12)_62%,rgba(250,246,239,0.38)_80%,rgba(250,246,239,0.78)_92%,rgba(250,246,239,0.985)_100%)]" />
 
             <div className="absolute inset-x-0 top-4 z-10 flex justify-center px-8 text-center text-[#fdf8f3] sm:top-8">
               <p className="font-serif text-[11px] font-medium uppercase tracking-[0.42em] text-[#e9ddd0]/98 sm:text-[11.5px]">
