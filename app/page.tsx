@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import { Camera, Gift, House, MapPinned } from "lucide-react";
-import { WindSong } from "next/font/google";
+import { Corinthia, Montserrat, WindSong } from "next/font/google";
 
 import { AccountsSection } from "@/components/accounts-section";
 import { BgmPlayer } from "@/components/bgm-player";
@@ -15,6 +15,16 @@ import { ShareActions } from "@/components/share-actions";
 import { getAccounts, getMeta, getPhotos, getSiteConfig, getStory } from "@/lib/content";
 
 const windsong = WindSong({
+  subsets: ["latin"],
+  weight: "400",
+});
+
+const montserrat = Montserrat({
+  subsets: ["latin"],
+  weight: "300",
+});
+
+const corinthia = Corinthia({
   subsets: ["latin"],
   weight: "400",
 });
@@ -100,17 +110,19 @@ export default function Home() {
                 <span key={index} className={`petal petal-${index + 1}`} />
               ))}
             </div>
-            <div className="absolute inset-x-0 bottom-0 z-[3] h-[24%] bg-[linear-gradient(180deg,rgba(250,246,239,0)_0%,rgba(250,246,239,0.02)_42%,rgba(250,246,239,0.12)_62%,rgba(250,246,239,0.38)_80%,rgba(250,246,239,0.78)_92%,rgba(250,246,239,0.985)_100%)]" />
+            <div className="absolute inset-x-0 bottom-0 z-[3] h-[19%] bg-[linear-gradient(180deg,rgba(250,246,239,0)_0%,rgba(250,246,239,0.015)_54%,rgba(250,246,239,0.08)_72%,rgba(250,246,239,0.22)_84%,rgba(250,246,239,0.52)_94%,rgba(250,246,239,0.92)_100%)]" />
 
             <div className="absolute inset-x-0 top-4 z-10 flex justify-center px-8 text-center text-[#fdf8f3] sm:top-8">
-              <p className="font-serif text-[11px] font-medium uppercase tracking-[0.42em] text-[#e9ddd0]/98 sm:text-[11.5px]">
+              <p
+                className={`${montserrat.className} text-[10px] font-light uppercase tracking-[0.46em] text-[#eaded0]/98 sm:text-[10px]`}
+              >
                 WEDDING INVITATION
               </p>
             </div>
 
-            <div className="pointer-events-none absolute inset-x-0 top-[16.8%] z-10 flex justify-center px-6 text-center text-white">
+            <div className="pointer-events-none absolute inset-x-0 top-[13.6%] z-10 flex justify-center px-6 text-center text-white">
               <p
-                className={`${windsong.className} w-full max-w-[17.4rem] whitespace-pre-line text-[clamp(2.56rem,10.95vw,3.72rem)] font-normal leading-[0.78] [text-shadow:0_2px_10px_rgba(0,0,0,0.08)]`}
+                className={`${corinthia.className} w-full max-w-[18.2rem] whitespace-pre-line text-[clamp(4.3rem,18.2vw,6.15rem)] font-normal leading-[0.68] tracking-[-0.01em] [text-shadow:0_1px_10px_rgba(0,0,0,0.06)]`}
               >
                 {"Our\nWedding\nDay"}
               </p>
