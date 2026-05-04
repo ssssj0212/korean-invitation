@@ -37,6 +37,8 @@ export default function Home() {
     weddingDate.getDate(),
   ).padStart(2, "0")}`;
   const heroLocation = "Manhattan, New York";
+  const heroFadeMask =
+    "[mask-image:linear-gradient(to_bottom,#000_0%,#000_73%,rgba(0,0,0,0.9)_83%,rgba(0,0,0,0.45)_93%,transparent_100%)] [-webkit-mask-image:linear-gradient(to_bottom,#000_0%,#000_73%,rgba(0,0,0,0.9)_83%,rgba(0,0,0,0.45)_93%,transparent_100%)]";
   const scrollToSection = (sectionId: string) => {
     document.getElementById(sectionId)?.scrollIntoView({ behavior: "smooth", block: "start" });
     window.history.replaceState(null, "", window.location.origin);
@@ -93,11 +95,11 @@ export default function Home() {
               alt={heroPhoto?.alt ?? "Wedding hero image"}
               priority
               fit="cover"
-              className="hero-photo-reveal z-0 h-full min-h-0 rounded-t-[30px] rounded-b-none object-center"
+              className={`hero-photo-reveal z-0 h-full min-h-0 rounded-t-[30px] rounded-b-none object-center ${heroFadeMask}`}
               sizes="(max-width: 430px) calc(100vw - 38px), 392px"
             />
             <div
-              className="pointer-events-none absolute inset-0 z-[1] rounded-t-[30px] rounded-b-none bg-[linear-gradient(180deg,rgba(255,250,244,0.1),rgba(246,232,219,0.08)_48%,rgba(255,255,255,0.04))]"
+              className="pointer-events-none absolute inset-0 z-[1] rounded-t-[30px] rounded-b-none bg-[linear-gradient(180deg,rgba(255,250,244,0.12)_0%,rgba(246,232,219,0.08)_30%,rgba(255,255,255,0)_52%)]"
               aria-hidden="true"
             />
             <div className="petal-layer" aria-hidden="true">
@@ -105,7 +107,6 @@ export default function Home() {
                 <span key={index} className={`petal petal-${index + 1}`} />
               ))}
             </div>
-            <div className="absolute inset-x-0 bottom-0 z-[3] h-[18%] bg-[radial-gradient(78%_140%_at_50%_100%,rgba(250,246,239,0.92)_0%,rgba(250,246,239,0.56)_30%,rgba(250,246,239,0.18)_58%,rgba(250,246,239,0)_74%),radial-gradient(54%_120%_at_12%_100%,rgba(250,246,239,0.85)_0%,rgba(250,246,239,0.42)_34%,rgba(250,246,239,0.12)_62%,rgba(250,246,239,0)_80%),radial-gradient(54%_120%_at_88%_100%,rgba(250,246,239,0.85)_0%,rgba(250,246,239,0.42)_34%,rgba(250,246,239,0.12)_62%,rgba(250,246,239,0)_80%),linear-gradient(180deg,rgba(250,246,239,0)_0%,rgba(250,246,239,0)_66%,rgba(250,246,239,0.03)_78%,rgba(250,246,239,0.16)_90%,rgba(250,246,239,0.52)_100%)]" />
 
             <div className="absolute inset-x-0 top-4 z-10 flex justify-center px-8 text-center text-[#fdf8f3] sm:top-8">
               <p
@@ -135,7 +136,7 @@ export default function Home() {
                 <span className="text-[clamp(0.68rem,2vw,0.72rem)] font-medium tracking-[0.045em] text-[#8a7969]">
                   신랑
                 </span>
-                <span className="font-serif text-[clamp(1.03rem,3.15vw,1.13rem)] font-semibold tracking-[-0.022em] text-[#312820]">
+                <span className="font-serif text-[clamp(1.03rem,3.15vw,1.13rem)] font-semibold tracking-[-0.022em] text-[#8b7a6b]">
                   {site.couple.groom}
                 </span>
               </div>
@@ -143,7 +144,7 @@ export default function Home() {
                 <span className="text-[clamp(0.68rem,2vw,0.72rem)] font-medium tracking-[0.045em] text-[#8a7969]">
                   신부
                 </span>
-                <span className="font-serif text-[clamp(1.03rem,3.15vw,1.13rem)] font-semibold tracking-[-0.022em] text-[#312820]">
+                <span className="font-serif text-[clamp(1.03rem,3.15vw,1.13rem)] font-semibold tracking-[-0.022em] text-[#8b7a6b]">
                   {site.couple.bride}
                 </span>
               </div>
