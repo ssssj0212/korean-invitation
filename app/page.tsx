@@ -32,10 +32,8 @@ export default function Home() {
   const meta = getMeta();
   const heroPhoto = photos[0];
   const galleryPhotos = photos.slice(1);
-  const weddingDate = new Date(site.weddingDateTime);
-  const compactDate = `${weddingDate.getFullYear()}.${String(weddingDate.getMonth() + 1).padStart(2, "0")}.${String(
-    weddingDate.getDate(),
-  ).padStart(2, "0")}`;
+  const [displayYear = "", displayMonth = "", displayDay = ""] = site.weddingDateTime.split("T")[0]?.split("-") ?? [];
+  const compactDate = `${displayYear}.${displayMonth}.${displayDay}`;
   const heroLocation = "Manhattan, New York";
   const heroFadeMask =
     "[mask-image:linear-gradient(to_bottom,#000_0%,#000_73%,rgba(0,0,0,0.9)_83%,rgba(0,0,0,0.45)_93%,transparent_100%)] [-webkit-mask-image:linear-gradient(to_bottom,#000_0%,#000_73%,rgba(0,0,0,0.9)_83%,rgba(0,0,0,0.45)_93%,transparent_100%)]";
