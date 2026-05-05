@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Camera, Gift, House, MapPinned } from "lucide-react";
+import { Camera, Gift, House, Heart } from "lucide-react";
 import { Montserrat, WindSong } from "next/font/google";
 
 import { AccountsSection } from "@/components/accounts-section";
@@ -56,7 +56,7 @@ export default function Home() {
         <div className="flex w-full items-center justify-center gap-3">
           {[
             { id: "home", label: "홈", icon: House },
-            { id: "invitation", label: "안내", icon: MapPinned },
+            { id: "invitation", label: "인사말", icon: Heart },
             { id: "gallery", label: "갤러리", icon: Camera },
             { id: "gift", label: "마음 전하실 곳", icon: Gift },
           ].map((section) => {
