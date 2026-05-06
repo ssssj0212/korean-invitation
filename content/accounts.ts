@@ -28,7 +28,7 @@ export const accounts: AccountsContent = {
         {
           label: "장남",
           bankName: "광주은행",
-          accountNumber: "133-121-80302",
+          accountNumber: "133-121-830302",
           accountHolder: "신세진",
           phone: "010-1234-1003",
         },
